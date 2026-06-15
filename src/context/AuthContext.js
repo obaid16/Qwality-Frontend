@@ -22,12 +22,12 @@ const mapUser = (apiUser, apiOrders = []) => {
         day: "numeric",
       }),
       status: order.status.charAt(0).toUpperCase() + order.status.slice(1),
-      total: order.total,
+      total: Math.round(order.total * 83),
       items: (order.items || []).map(item => ({
         ...item,
         name: item.name,
         qty: item.quantity,
-        price: item.price,
+        price: Math.round(item.price * 83),
         color: item.color,
         size: item.size,
       }))

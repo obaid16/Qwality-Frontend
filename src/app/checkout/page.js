@@ -121,7 +121,7 @@ export default function CheckoutPage() {
       <>
         <PageLoader />
         <Navbar />
-        <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1] flex items-center justify-center">
+        <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1] flex items-center justify-center">
           <div className="max-w-md w-full bg-white border border-brand-navy/10 rounded p-8 text-center space-y-6 shadow-xl">
             <FiCheckCircle className="w-16 h-16 text-brand-gold mx-auto" />
             <h1 className="font-luxury text-2xl font-bold tracking-widest text-brand-navy uppercase">Order Confirmed</h1>
@@ -154,7 +154,7 @@ export default function CheckoutPage() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-7xl mx-auto px-6">
           <h1 className="font-luxury text-3xl md:text-4xl font-extrabold tracking-widest text-brand-navy border-b border-brand-navy/10 pb-6 mb-12 uppercase">
             Secure Checkout
@@ -357,7 +357,7 @@ export default function CheckoutPage() {
                           Qty: {item.quantity} / {item.selectedColor?.name} / {item.selectedSize}
                         </p>
                       </div>
-                      <span className="text-xs font-bold text-brand-navy">${item.price * item.quantity}</span>
+                      <span className="text-xs font-bold text-brand-navy">₹{Math.round(item.price * item.quantity).toLocaleString("en-IN")}</span>
                     </div>
                   ))}
                 </div>
@@ -366,21 +366,21 @@ export default function CheckoutPage() {
                 <div className="space-y-3 text-xs border-t border-brand-navy/10 pt-6">
                   <div className="flex justify-between text-brand-charcoal/70">
                     <span>Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span>₹{Math.round(subtotal).toLocaleString("en-IN")}</span>
                   </div>
                   {discountAmount > 0 && (
                     <div className="flex justify-between text-green-600 font-semibold">
                       <span>Discount</span>
-                      <span>-${discountAmount.toFixed(2)}</span>
+                      <span>-₹{Math.round(discountAmount).toLocaleString("en-IN")}</span>
                     </div>
                   )}
                   <div className="flex justify-between text-brand-charcoal/70">
                     <span>Shipping</span>
-                    <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+                    <span>{shipping === 0 ? "Free" : `₹${Math.round(shipping).toLocaleString("en-IN")}`}</span>
                   </div>
                   <div className="border-t border-brand-navy/10 pt-4 flex justify-between text-sm font-extrabold text-brand-navy">
                     <span>Total Order</span>
-                    <span className="text-brand-gold">${total.toFixed(2)}</span>
+                    <span className="text-brand-gold">₹{Math.round(total).toLocaleString("en-IN")}</span>
                   </div>
                 </div>
 

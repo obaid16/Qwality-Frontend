@@ -13,7 +13,7 @@ const mapApiCart = (apiCart) => {
     return {
       id: prod._id,
       name: prod.name,
-      price: prod.salePrice > 0 ? prod.salePrice : prod.price,
+      price: Math.round((prod.salePrice > 0 ? prod.salePrice : prod.price) * 83),
       quantity: item.quantity,
       selectedColor: { name: item.color || "Default" },
       selectedSize: item.size || "Adjustable",
@@ -27,7 +27,7 @@ const mapApiWishlist = (apiWishlist) => {
   return apiWishlist.products.map((prod) => ({
     id: prod._id,
     name: prod.name,
-    price: prod.salePrice > 0 ? prod.salePrice : prod.price,
+    price: Math.round((prod.salePrice > 0 ? prod.salePrice : prod.price) * 83),
     images: prod.images || [],
     colors: prod.colors || [],
     sizes: prod.sizes || [],
@@ -247,11 +247,11 @@ export function CartProvider({ children }) {
       try {
         const res = await apiFetch("/coupons/validate", {
           method: "POST",
-          body: { code, orderAmount: subtotal },
+          body: { code, orderAmount: subtotal / 83 },
         });
         if (res.success && res.data) {
           setCoupon(res.data);
-          return { success: true, message: `Promo applied: ${res.data.discountValue}${res.data.discountType === "percentage" ? "%" : " flat"} off!` };
+          return { success: true, message: `Promo applied: ${res.data.discountType === "percentage" ? res.data.discountValue + "%" : "₹" + Math.round(res.data.discountValue * 83)} off!` };
         }
       } catch (error) {
         setCoupon(null);
@@ -273,10 +273,9 @@ export function CartProvider({ children }) {
 
   const clearCart = () => {
     if (user) {
-      // Clear cart in backend by setting items to empty
-      apiFetch("/carts/update", {
-        method: "PUT",
-        body: { quantity: 0 },
+      // Clear cart in backend
+      apiFetch("/carts/clear", {
+        method: "DELETE",
       }).catch(e => console.error("Failed to clear cart:", e));
     }
     saveLocalCart([]);
@@ -293,17 +292,17 @@ export function CartProvider({ children }) {
     const subtotal = getSubtotal();
     if (coupon.discountType === "percentage") {
       let discountVal = (subtotal * coupon.discountValue) / 100;
-      if (coupon.maxDiscountAmount > 0 && discountVal > coupon.maxDiscountAmount) {
-        discountVal = coupon.maxDiscountAmount;
+      if (coupon.maxDiscountAmount > 0 && discountVal > (coupon.maxDiscountAmount * 83)) {
+        discountVal = coupon.maxDiscountAmount * 83;
       }
       return discountVal;
     } else {
-      return coupon.discountValue;
+      return coupon.discountValue * 83;
     }
   };
 
   const getShipping = () => {
-    return getSubtotal() > 150 || getSubtotal() === 0 ? 0 : 15;
+    return getSubtotal() > (150 * 83) || getSubtotal() === 0 ? 0 : (15 * 83);
   };
 
   const getTotal = () => {

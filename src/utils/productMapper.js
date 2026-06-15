@@ -38,9 +38,9 @@ export const mapBackendProduct = (p) => {
   return {
     ...p,
     id: p._id,
-    price: p.salePrice > 0 ? p.salePrice : p.price,
-    originalPrice: p.price,
-    salePrice: p.salePrice,
+    price: Math.round((p.salePrice > 0 ? p.salePrice : p.price) * 83),
+    originalPrice: Math.round(p.price * 83),
+    salePrice: p.salePrice > 0 ? Math.round(p.salePrice * 83) : 0,
     category: p.category && typeof p.category === "object" ? p.category.name : "Classic",
     colors,
     sizes,

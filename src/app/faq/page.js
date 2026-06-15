@@ -36,7 +36,7 @@ export default function FAQPage() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-3xl mx-auto px-6 space-y-12">
           
           <div className="text-center space-y-4">

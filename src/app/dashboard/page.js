@@ -80,7 +80,7 @@ export default function DashboardPage() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-7xl mx-auto px-6">
           <h1 className="font-luxury text-3xl md:text-4xl font-extrabold tracking-widest text-brand-navy border-b border-brand-navy/10 pb-6 mb-12 uppercase">
             Member Dashboard
@@ -208,14 +208,14 @@ export default function DashboardPage() {
                                     {item.color} / {item.size} (Qty: {item.qty})
                                   </p>
                                 </div>
-                                <span className="font-semibold text-brand-navy">${item.price * item.qty}</span>
+                                <span className="font-semibold text-brand-navy">₹{(item.price * item.qty).toLocaleString("en-IN")}</span>
                               </div>
                             ))}
                           </div>
 
                           <div className="border-t border-brand-navy/10 pt-3 flex justify-between items-center text-xs font-bold">
                             <span className="uppercase text-brand-charcoal/60">Total Cost</span>
-                            <span className="text-brand-gold text-sm font-extrabold">${order.total.toFixed(2)}</span>
+                            <span className="text-brand-gold text-sm font-extrabold">₹{order.total.toLocaleString("en-IN")}</span>
                           </div>
                         </div>
                       ))}
@@ -242,7 +242,7 @@ export default function DashboardPage() {
                           <div className="flex-1 flex flex-col justify-between">
                             <div>
                               <h4 className="font-luxury text-xs font-bold text-brand-navy tracking-wider">{item.name}</h4>
-                              <p className="text-xs text-brand-gold font-bold mt-1">${item.price}</p>
+                              <p className="text-xs text-brand-gold font-bold mt-1">₹{item.price.toLocaleString("en-IN")}</p>
                             </div>
                             <Link href={`/product/${item.id}`} className="text-[10px] text-brand-navy hover:underline uppercase tracking-widest font-semibold mt-2">
                               View Details

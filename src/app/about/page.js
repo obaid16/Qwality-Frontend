@@ -10,7 +10,7 @@ export default function AboutPage() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-4xl mx-auto px-6 space-y-16">
           
           {/* Header */}

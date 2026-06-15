@@ -33,6 +33,19 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when any drawer or overlay is open
+  useEffect(() => {
+    const shouldLock = isMobileMenuOpen || isCartOpen || isWishlistOpen || isSearchOpen;
+    if (shouldLock) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen, isCartOpen, isWishlistOpen, isSearchOpen]);
+
   // On non-home pages, always show dark navbar (white text won't be invisible)
   const isDark = !isHomePage || isScrolled;
 
@@ -68,13 +81,10 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top micro-bar for luxury messaging */}
-      <div className="fixed top-0 left-0 right-0 h-8 bg-brand-charcoal text-brand-white text-[9px] uppercase tracking-[0.3em] font-semibold flex items-center justify-center z-55 border-b border-brand-gold/10">
-        <span>Complimentary Worldwide White-Glove Shipping On Orders Over $150</span>
-      </div>
+
 
       <motion.header
-        className={`fixed top-8 left-0 right-0 z-50 transition-all duration-700 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           isDark
             ? "glass-effect py-4 shadow-xl" 
             : "bg-transparent py-7"
@@ -275,7 +285,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed top-[108px] left-0 w-full bg-brand-navy/95 backdrop-blur-xl border-b border-brand-gold/20 z-40 md:hidden overflow-hidden"
+            className="fixed top-[76px] left-0 w-full bg-brand-navy/95 backdrop-blur-xl border-b border-brand-gold/20 z-40 md:hidden overflow-hidden"
           >
             <div className="flex flex-col p-6 space-y-4">
               {navLinks.map((link) => (
@@ -333,15 +343,15 @@ export default function Navbar() {
               {/* Progress Indicator for Free Shipping */}
               {totalItems > 0 && (
                 <div className="bg-brand-white border-b border-brand-gold/10 px-6 py-3.5 text-[10px] uppercase tracking-wider text-brand-navy flex justify-between items-center">
-                  {total >= 150 ? (
+                  {total >= 12450 ? (
                     <span className="font-semibold text-green-700">Congratulations! Free Shipping Applied.</span>
                   ) : (
-                    <span>Add <strong className="text-brand-gold">${(150 - total).toFixed(2)}</strong> more for free worldwide delivery</span>
+                    <span>Add <strong className="text-brand-gold">₹{Math.round(12450 - total).toLocaleString("en-IN")}</strong> more for free worldwide delivery</span>
                   )}
                   <div className="w-24 bg-brand-navy/10 h-1.5 rounded-full overflow-hidden">
                     <div 
                       className="bg-brand-gold h-full transition-all duration-500" 
-                      style={{ width: `${Math.min((total / 150) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((total / 12450) * 100, 100)}%` }}
                     />
                   </div>
                 </div>
@@ -377,7 +387,7 @@ export default function Navbar() {
                         <div>
                           <div className="flex justify-between items-start">
                             <h4 className="font-luxury text-brand-navy text-xs font-bold uppercase tracking-wider leading-snug">{item.name}</h4>
-                            <span className="text-xs font-bold text-brand-navy">${item.price * item.quantity}</span>
+                            <span className="text-xs font-bold text-brand-navy">₹{(item.price * item.quantity).toLocaleString("en-IN")}</span>
                           </div>
                           <p className="text-[9px] text-brand-charcoal/50 mt-1 uppercase tracking-widest">
                             {item.selectedColor?.name} / {item.selectedSize}
@@ -416,7 +426,7 @@ export default function Navbar() {
                 <div className="p-6 border-t border-brand-gold/15 bg-brand-navy text-brand-white">
                   <div className="flex justify-between mb-4">
                     <span className="text-xs uppercase tracking-widest text-brand-white/80">Total Value</span>
-                    <span className="font-bold text-lg text-brand-gold">${total.toFixed(2)}</span>
+                    <span className="font-bold text-lg text-brand-gold">₹{total.toLocaleString("en-IN")}</span>
                   </div>
                   <p className="text-[10px] text-brand-white/50 mb-6 uppercase tracking-wider">Duties included. VAT added on next step.</p>
                   <div className="space-y-3">
@@ -502,7 +512,7 @@ export default function Navbar() {
                         <div>
                           <div className="flex justify-between">
                             <h4 className="font-luxury text-brand-navy text-xs font-bold uppercase tracking-wider leading-snug">{item.name}</h4>
-                            <span className="text-xs font-bold text-brand-navy">${item.price}</span>
+                            <span className="text-xs font-bold text-brand-navy">₹{item.price.toLocaleString("en-IN")}</span>
                           </div>
                           <p className="text-[9px] text-brand-charcoal/50 mt-1 uppercase tracking-widest">
                             {item.category}

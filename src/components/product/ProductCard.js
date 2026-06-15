@@ -24,13 +24,13 @@ export default function ProductCard({ product, onQuickView }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col h-full bg-white border border-[#C8A96A]/15 rounded-none overflow-hidden transition-all duration-700 hover:border-brand-gold/60 hover:shadow-[0_20px_45px_rgba(200,169,106,0.12)]"
+      className="group relative flex flex-col h-full w-full max-w-[340px] mx-auto bg-white border border-[#C8A96A]/15 rounded-none overflow-hidden transition-all duration-700 hover:border-brand-gold/60 hover:shadow-[0_20px_45px_rgba(200,169,106,0.12)]"
     >
       {/* Luxury hover radial-glow overlay */}
       <div className="hover-glow-overlay" />
 
       {/* Product Image & Badges */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#F2EFE9] border-b border-brand-navy/5">
+      <div className="relative aspect-square w-full overflow-hidden bg-[#F2EFE9] border-b border-[#C8A96A]/15">
         <Link href={`/product/${productId}`}>
           <img
             src={product.images[0]}
@@ -60,39 +60,45 @@ export default function ProductCard({ product, onQuickView }) {
           </div>
         )}
 
-        {/* Sliding Action Panel (Luxury bar) */}
-        <div className="absolute inset-x-0 bottom-0 h-11 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-10 flex border-t border-brand-gold/20 bg-brand-navy/95 backdrop-blur-md">
-          {/* Wishlist Button */}
-          <button
-            onClick={() => toggleWishlist(product)}
-            className="w-11 h-full flex items-center justify-center text-brand-gold hover:text-brand-white border-r border-brand-gold/15 transition-colors cursor-pointer"
-            aria-label="Add to wishlist"
-          >
-            <FiHeart className={`w-3.5 h-3.5 ${isWishlisted ? "fill-brand-gold text-brand-gold" : ""}`} />
-          </button>
+        {/* Floating Wishlist Button */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            toggleWishlist(product);
+          }}
+          className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center bg-brand-navy/75 backdrop-blur-md border border-brand-gold/20 text-brand-gold hover:text-brand-white transition-all duration-300 z-15 shadow-md cursor-pointer"
+          aria-label="Add to wishlist"
+        >
+          <FiHeart className={`w-3.5 h-3.5 ${isWishlisted ? "fill-brand-gold text-brand-gold" : ""}`} />
+        </button>
 
+        {/* Hover Center Actions */}
+        <div className="absolute inset-0 bg-brand-navy/30 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center gap-3.5 z-10">
           {/* Quick Add Button */}
           <button
             onClick={handleQuickAdd}
-            className="flex-grow h-full flex items-center justify-center gap-1.5 text-[9px] tracking-widest uppercase font-bold text-brand-gold hover:bg-brand-gold hover:text-brand-navy transition-all duration-300 cursor-pointer"
+            className="w-10 h-10 rounded-full bg-brand-white border border-brand-gold/20 text-brand-navy hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center shadow-lg transition-all duration-350 hover:scale-110 cursor-pointer"
+            title="Quick Add"
           >
-            <FiShoppingBag className="w-3 h-3" />
-            <span>Quick Add</span>
+            <FiShoppingBag className="w-4 h-4" />
           </button>
 
           {/* Quick View Button */}
           <button
-            onClick={() => onQuickView(product)}
-            className="w-11 h-full flex items-center justify-center text-brand-gold hover:text-brand-white border-l border-brand-gold/15 transition-colors cursor-pointer"
-            aria-label="Quick View"
+            onClick={(e) => {
+              e.preventDefault();
+              onQuickView(product);
+            }}
+            className="w-10 h-10 rounded-full bg-brand-white border border-brand-gold/20 text-brand-navy hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center shadow-lg transition-all duration-350 hover:scale-110 cursor-pointer"
+            title="Quick View"
           >
-            <FiEye className="w-3.5 h-3.5" />
+            <FiEye className="w-4 h-4" />
           </button>
         </div>
       </div>
 
       {/* Info Content */}
-      <div className="p-5 flex-grow flex flex-col justify-between bg-white">
+      <div className="p-4 flex-grow flex flex-col justify-between bg-white">
         <div className="space-y-1">
           <div className="flex justify-between items-center">
             <p className="text-[9px] tracking-[0.25em] text-brand-gold uppercase font-bold">
@@ -110,15 +116,15 @@ export default function ProductCard({ product, onQuickView }) {
           </h3>
         </div>
         
-        <div className="mt-4 flex justify-between items-center">
+        <div className="mt-2.5 flex justify-between items-center">
           <div className="flex items-center gap-2">
             {product.salePrice > 0 ? (
               <>
-                <span className="font-bold text-base text-brand-navy">${product.salePrice}</span>
-                <span className="text-xs text-brand-charcoal/40 line-through font-light">${product.originalPrice}</span>
+                <span className="font-bold text-base text-brand-navy">₹{product.salePrice}</span>
+                <span className="text-xs text-brand-charcoal/40 line-through font-light">₹{product.originalPrice}</span>
               </>
             ) : (
-              <span className="font-semibold text-base text-brand-navy">${product.price}</span>
+              <span className="font-semibold text-base text-brand-navy">₹{product.price}</span>
             )}
           </div>
           

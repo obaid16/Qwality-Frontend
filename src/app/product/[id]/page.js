@@ -152,7 +152,7 @@ export default function ProductDetails({ params }) {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Breadcrumbs */}
@@ -215,7 +215,7 @@ export default function ProductDetails({ params }) {
 
                 {/* Stars and Price */}
                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-navy/10">
-                  <span className="text-3xl font-extrabold text-brand-navy">${product.price}</span>
+                  <span className="text-3xl font-extrabold text-brand-navy">₹{product.price.toLocaleString("en-IN")}</span>
                   <div className="h-4 w-[1px] bg-brand-navy/25" />
                   <div className="flex items-center gap-1.5">
                     <div className="flex text-brand-gold text-sm">
@@ -397,7 +397,7 @@ export default function ProductDetails({ params }) {
                   <img src={product.images[0]} alt="" className="w-16 h-16 object-cover border border-brand-navy/10 rounded" />
                   <div>
                     <p className="text-xs font-bold text-brand-navy">{product.name}</p>
-                    <p className="text-xs text-brand-gold font-bold">${product.price}</p>
+                    <p className="text-xs text-brand-gold font-bold">₹{product.price.toLocaleString("en-IN")}</p>
                   </div>
                 </div>
 
@@ -408,7 +408,7 @@ export default function ProductDetails({ params }) {
                   <img src={bundleProduct.images[0]} alt="" className="w-16 h-16 object-cover border border-brand-navy/10 rounded" />
                   <div>
                     <p className="text-xs font-bold text-brand-navy">{bundleProduct.name}</p>
-                    <p className="text-xs text-brand-gold font-bold">${bundleProduct.price}</p>
+                    <p className="text-xs text-brand-gold font-bold">₹{bundleProduct.price.toLocaleString("en-IN")}</p>
                   </div>
                 </div>
               </div>
@@ -425,7 +425,7 @@ export default function ProductDetails({ params }) {
                     />
                     Add Bundle Item
                   </label>
-                  <p className="text-xs text-brand-charcoal/60 mt-1">Total Price: <span className="font-bold text-brand-gold">${product.price + (bundleChecked ? bundleProduct.price : 0)}</span></p>
+                  <p className="text-xs text-brand-charcoal/60 mt-1">Total Price: <span className="font-bold text-brand-gold">₹{(product.price + (bundleChecked ? bundleProduct.price : 0)).toLocaleString("en-IN")}</span></p>
                 </div>
                 <button
                   onClick={handleAddToCart}
@@ -440,7 +440,7 @@ export default function ProductDetails({ params }) {
           {/* Related Products Grid */}
           <div>
             <h2 className="font-luxury text-brand-navy text-2xl font-bold tracking-widest uppercase mb-8 text-center">Related Masterpieces</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center justify-items-center">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} onQuickView={openQuickView} />
               ))}

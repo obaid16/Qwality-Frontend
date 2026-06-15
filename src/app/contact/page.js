@@ -20,7 +20,7 @@ export default function ContactPage() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-xl mx-auto mb-16 space-y-4">
             <span className="text-xs uppercase text-brand-gold tracking-[0.3em] font-semibold">Artisan Consultation</span>

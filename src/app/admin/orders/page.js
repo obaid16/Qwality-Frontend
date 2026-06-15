@@ -179,7 +179,7 @@ export default function AdminOrdersPage() {
                     </td>
                     <td className="px-5 py-3.5 text-xs text-white/50">{order.items?.length ?? 0}</td>
                     <td className="px-5 py-3.5">
-                      <span className="text-xs font-bold text-white">${order.total?.toFixed(2)}</span>
+                      <span className="text-xs font-bold text-white">₹{Math.round(order.total * 83).toLocaleString("en-IN")}</span>
                     </td>
                     <td className="px-5 py-3.5">
                       <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
@@ -216,7 +216,7 @@ export default function AdminOrdersPage() {
                                 <div key={idx} className="flex items-center justify-between text-xs text-white/60">
                                   <span>{item.name} × {item.quantity}</span>
                                   <span className="text-white/40">{item.color} / {item.size}</span>
-                                  <span className="text-white font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                                  <span className="text-white font-bold">₹{Math.round(item.price * 83 * item.quantity).toLocaleString("en-IN")}</span>
                                 </div>
                               ))}
                             </div>
@@ -236,18 +236,18 @@ export default function AdminOrdersPage() {
                             <p className="text-[9px] uppercase tracking-[0.2em] text-[#C8A96A] font-semibold mb-3">Order Summary</p>
                             <div className="space-y-1.5 text-xs">
                               <div className="flex justify-between text-white/60">
-                                <span>Subtotal</span><span>${order.subtotal?.toFixed(2)}</span>
+                                <span>Subtotal</span><span>₹{Math.round(order.subtotal * 83).toLocaleString("en-IN")}</span>
                               </div>
                               <div className="flex justify-between text-white/60">
-                                <span>Shipping</span><span>${order.shippingFee?.toFixed(2)}</span>
+                                <span>Shipping</span><span>₹{Math.round(order.shippingFee * 83).toLocaleString("en-IN")}</span>
                               </div>
                               {order.discount > 0 && (
                                 <div className="flex justify-between text-[#C8A96A]">
-                                  <span>Discount</span><span>-${order.discount?.toFixed(2)}</span>
+                                  <span>Discount</span><span>-₹{Math.round(order.discount * 83).toLocaleString("en-IN")}</span>
                                 </div>
                               )}
                               <div className="flex justify-between text-white font-bold pt-2 border-t border-white/10">
-                                <span>Total</span><span>${order.total?.toFixed(2)}</span>
+                                <span>Total</span><span>₹{Math.round(order.total * 83).toLocaleString("en-IN")}</span>
                               </div>
                               <p className="text-[10px] text-white/30 mt-2">Payment: {order.paymentMethod?.toUpperCase()}</p>
                             </div>

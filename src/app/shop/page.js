@@ -22,7 +22,7 @@ function ShopContent() {
   // Filters State
   const [search, setSearch] = useState(initialSearch);
   const [category, setCategory] = useState(initialCategory);
-  const [maxPrice, setMaxPrice] = useState(200);
+  const [maxPrice, setMaxPrice] = useState(20750);
   const [sortBy, setSortBy] = useState("default");
   
   // Mobile filter sidebar toggle
@@ -101,7 +101,7 @@ function ShopContent() {
           }
         }
         
-        queryParams += `&maxPrice=${maxPrice}`;
+        queryParams += `&maxPrice=${maxPrice / 83}`;
         
         if (sortBy === "price-asc") {
           queryParams += `&sort=price`;
@@ -128,7 +128,12 @@ function ShopContent() {
         setLoading(false);
       }
     };
-    fetchFilteredProducts();
+
+    const debouncedFetch = setTimeout(() => {
+      fetchFilteredProducts();
+    }, 300);
+
+    return () => clearTimeout(debouncedFetch);
   }, [search, category, maxPrice, sortBy, currentPage, categoriesMap]);
 
   // Reset page when filter dependencies change
@@ -159,7 +164,7 @@ function ShopContent() {
   const resetFilters = () => {
     setSearch("");
     setCategory("All");
-    setMaxPrice(200);
+    setMaxPrice(20750);
     setSortBy("default");
   };
 
@@ -168,7 +173,7 @@ function ShopContent() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[150px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[118px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Header & Subtitle */}
@@ -180,7 +185,7 @@ function ShopContent() {
               </h1>
             </div>
             <p className="text-sm text-brand-charcoal/60 max-w-md font-light">
-              Explore custom headwear collections curated for style connoisseurs. Enjoy free worldwide delivery on orders over $150.
+              Explore custom headwear collections curated for style connoisseurs. Enjoy free worldwide delivery on orders over ₹12,450.
             </p>
           </div>
 
@@ -232,20 +237,20 @@ function ShopContent() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <h4 className="font-luxury text-xs uppercase tracking-widest font-bold text-brand-navy">Price Range</h4>
-                  <span className="text-xs font-semibold text-brand-gold">${mounted ? maxPrice : 200} max</span>
+                  <span className="text-xs font-semibold text-brand-gold">₹{mounted ? maxPrice.toLocaleString("en-IN") : "20,750"} max</span>
                 </div>
                 <input
                   type="range"
-                  min="50"
-                  max="250"
-                  step="5"
-                  value={mounted ? maxPrice : 200}
+                  min="0"
+                  max="20750"
+                  step="250"
+                  value={mounted ? maxPrice : 20750}
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
                   className="w-full accent-brand-gold bg-brand-navy/10 rounded-lg appearance-none h-1.5 cursor-pointer"
                 />
                 <div className="flex justify-between text-[10px] text-brand-charcoal/50">
-                  <span>$50</span>
-                  <span>$250</span>
+                  <span>₹0</span>
+                  <span>₹20,750</span>
                 </div>
               </div>
 
@@ -305,7 +310,7 @@ function ShopContent() {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center justify-items-center">
                   {currentItems.map((product) => (
                     <ProductCard key={product.id} product={product} onQuickView={openQuickView} />
                   ))}
@@ -396,14 +401,14 @@ function ShopContent() {
               <div className="mb-8 space-y-2">
                 <div className="flex justify-between">
                   <label className="text-xs uppercase tracking-wider font-semibold text-brand-navy">Price Limit</label>
-                  <span className="text-xs font-semibold text-brand-gold">${mounted ? maxPrice : 200}</span>
+                  <span className="text-xs font-semibold text-brand-gold">₹{mounted ? maxPrice.toLocaleString("en-IN") : "20,750"}</span>
                 </div>
                 <input
                   type="range"
-                  min="50"
-                  max="250"
-                  step="5"
-                  value={mounted ? maxPrice : 200}
+                  min="0"
+                  max="20750"
+                  step="250"
+                  value={mounted ? maxPrice : 20750}
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
                   className="w-full accent-brand-gold"
                 />

@@ -21,6 +21,17 @@ export default function QuickViewModal({ product, isOpen, onClose }) {
     setActiveImage(product.images[0]);
   }
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   if (!isOpen || !product) return null;
 
   const isWishlisted = wishlist.some((item) => item.id === product.id);
@@ -95,7 +106,7 @@ export default function QuickViewModal({ product, isOpen, onClose }) {
               </h2>
               
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-2xl font-extrabold text-brand-navy">${product.price}</span>
+                <span className="text-2xl font-extrabold text-brand-navy">₹{product.price.toLocaleString("en-IN")}</span>
                 <span className="h-4 w-[1px] bg-brand-navy/20" />
                 <div className="flex items-center gap-1 text-brand-gold text-sm">
                   {"★".repeat(Math.round(product.rating))}

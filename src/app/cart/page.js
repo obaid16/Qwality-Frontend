@@ -36,7 +36,7 @@ export default function CartPage() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-7xl mx-auto px-6">
           <h1 className="font-luxury text-3xl md:text-4xl font-extrabold tracking-widest text-brand-navy border-b border-brand-navy/10 pb-6 mb-12 uppercase">
             Your Shopping Bag
@@ -77,7 +77,7 @@ export default function CartPage() {
                           <h3 className="font-luxury text-brand-navy font-bold tracking-wider text-base">
                             {item.name}
                           </h3>
-                          <span className="font-bold text-brand-navy">${item.price * item.quantity}</span>
+                          <span className="font-bold text-brand-navy">₹{Math.round(item.price * item.quantity).toLocaleString("en-IN")}</span>
                         </div>
                         <p className="text-xs text-brand-charcoal/50 uppercase tracking-widest mt-1">
                           Collection: {item.category}
@@ -127,23 +127,23 @@ export default function CartPage() {
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between text-brand-charcoal/70">
                     <span>Subtotal</span>
-                    <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                    <span className="font-semibold">₹{Math.round(subtotal).toLocaleString("en-IN")}</span>
                   </div>
                   {discountAmount > 0 && (
                     <div className="flex justify-between text-green-600 font-medium">
                       <span className="flex items-center gap-1"><FiPercent /> Promo Discount</span>
-                      <span>-${discountAmount.toFixed(2)}</span>
+                      <span>-₹{Math.round(discountAmount).toLocaleString("en-IN")}</span>
                     </div>
                   )}
                   <div className="flex justify-between text-brand-charcoal/70">
                     <span>Shipping</span>
                     <span className="font-semibold">
-                      {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                      {shipping === 0 ? "Free" : `₹${Math.round(shipping).toLocaleString("en-IN")}`}
                     </span>
                   </div>
                   <div className="border-t border-brand-navy/10 pt-4 flex justify-between text-base font-extrabold text-brand-navy">
                     <span>Total</span>
-                    <span className="text-brand-gold">${total.toFixed(2)}</span>
+                    <span className="text-brand-gold">₹{Math.round(total).toLocaleString("en-IN")}</span>
                   </div>
                 </div>
 

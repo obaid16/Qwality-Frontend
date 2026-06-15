@@ -24,13 +24,13 @@ const testimonials = [
     quote: "Bespoke service at its finest. The custom gold monogram embroidery is absolutely flawless, crafted with total discretion.",
     author: "Lady Genevieve",
     location: "St. Moritz",
-    yOffset: "md:translate-y-8"
+    yOffset: "md:translate-y-4"
   },
   {
     quote: "Unparalleled structural profile. The raw Italian calfskin suede unboxing experience feels like receiving a Swiss masterpiece.",
     author: "Sir Alistair Vance",
     location: "Milan",
-    yOffset: "md:translate-y-4"
+    yOffset: "md:translate-y-2"
   }
 ];
 
@@ -98,9 +98,9 @@ export default function Home() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-0 overflow-hidden bg-brand-white relative">
+      <main className="flex-grow pt-0 overflow-hidden bg-gradient-to-b from-[#0A0E17] via-[#0E1524] to-[#0A0D15] text-brand-white relative">
         {/* Fixed vertical background architectural grid lines */}
-        <div className="fixed inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-7xl luxury-grid-lines pointer-events-none z-0 opacity-40" />
+        <div className="fixed inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-7xl luxury-grid-lines pointer-events-none z-0 opacity-15" />
 
         {/* HERO SECTION */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden bg-brand-navy z-10">
@@ -138,7 +138,7 @@ export default function Home() {
             
             <motion.h1
               variants={heroItemVariants}
-              className="font-luxury text-5xl sm:text-7xl lg:text-[92px] font-light tracking-[0.06em] leading-[1.03] text-brand-white mb-8"
+              className="font-luxury text-4xl sm:text-6xl lg:text-7xl font-light tracking-[0.06em] leading-[1.1] text-brand-white mb-6"
             >
               CRAFTED FOR THE <br />
               <span className="italic text-brand-gold font-normal">Distinguished</span>
@@ -146,24 +146,24 @@ export default function Home() {
             
             <motion.p
               variants={heroItemVariants}
-              className="text-xs sm:text-sm max-w-xl mx-auto font-light leading-relaxed text-brand-white/70 mb-12 tracking-wide"
+              className="text-xs sm:text-sm max-w-xl mx-auto font-light leading-relaxed text-brand-white/70 mb-8 tracking-wide"
             >
               Every cap is a custom statement. Hand-assembled with Grade-A cashmere, Italian suede, and signature gold bullion embroidery. Made with uncompromising standards.
             </motion.p>
 
             <motion.div
               variants={heroItemVariants}
-              className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto"
             >
               <Link
                 href="/shop"
-                className="w-full sm:w-auto px-11 py-4.5 bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-widest border border-brand-gold hover:bg-transparent hover:text-brand-white transition-all duration-500 ease-out shadow-[0_10px_30px_rgba(200,169,106,0.2)]"
+                className="w-full sm:w-auto px-8 py-3.5 bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-widest border border-brand-gold hover:bg-transparent hover:text-brand-white transition-all duration-500 ease-out shadow-[0_10px_30px_rgba(200,169,106,0.2)]"
               >
                 Explore Collection
               </Link>
               <Link
                 href="/shop?category=Custom"
-                className="w-full sm:w-auto px-11 py-4.5 border border-brand-white/20 text-brand-white font-bold text-xs uppercase tracking-widest hover:border-brand-gold hover:text-brand-gold hover:bg-white/5 transition-all duration-500 ease-out backdrop-blur-sm"
+                className="w-full sm:w-auto px-8 py-3.5 border border-brand-white/20 text-brand-white font-bold text-xs uppercase tracking-widest hover:border-brand-gold hover:text-brand-gold hover:bg-white/5 transition-all duration-500 ease-out backdrop-blur-sm"
               >
                 Bespoke Design
               </Link>
@@ -171,8 +171,8 @@ export default function Home() {
           </motion.div>
 
           {/* Luxury watch Tourbillon/Pendulum scroll indicator */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-10 select-none">
-            <span className="text-[8px] uppercase tracking-[0.35em] text-brand-white/35 mb-3.5 font-bold">Atelier Entrance</span>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center z-10 select-none">
+            <span className="text-[8px] uppercase tracking-[0.35em] text-brand-white/35 mb-2 font-bold">Atelier Entrance</span>
             <div className="w-5 h-8 rounded-full border border-brand-gold/30 flex justify-center p-1 bg-brand-navy/60 backdrop-blur-sm shadow-lg">
               <motion.div
                 animate={{ y: [0, 10, 0] }}
@@ -180,13 +180,12 @@ export default function Home() {
                 className="w-1 h-1.5 rounded-full bg-brand-gold"
               />
             </div>
-            <div className="w-[1px] h-10 bg-gradient-to-b from-brand-gold/30 to-transparent mt-2 animate-pulse" />
           </div>
         </section>
 
         {/* BRAND STATEMENT BANNER */}
-        <section className="bg-brand-white border-y border-brand-gold/15 py-10 overflow-hidden select-none z-10 relative">
-          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-8 md:gap-20 text-center font-luxury tracking-[0.25em] text-[10px] md:text-xs font-bold uppercase text-brand-navy/60">
+        <section className="bg-[#0D1522] border-y border-brand-gold/15 py-6 overflow-hidden select-none z-10 relative">
+          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-6 md:gap-16 text-center font-luxury tracking-[0.25em] text-[10px] md:text-xs font-bold uppercase text-brand-white/50">
             <span>• Italian calfskin suede</span>
             <span>• Grade-A Cashmere</span>
             <span>• Hand-embroidered in Gold</span>
@@ -195,27 +194,27 @@ export default function Home() {
         </section>
 
         {/* CATEGORIES SECTION (Staggered Magazine-style Layout) */}
-        <section className="py-36 px-6 max-w-7xl mx-auto z-10 relative">
-          <div className="text-center max-w-xl mx-auto mb-24 space-y-3">
+        <section className="py-20 px-6 max-w-7xl mx-auto z-10 relative">
+          <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
             <span className="text-xs uppercase text-brand-gold tracking-[0.3em] font-semibold">Exquisite Lines</span>
-            <h2 className="font-luxury text-4xl sm:text-5xl font-light tracking-widest text-brand-navy">
+            <h2 className="font-luxury text-3xl sm:text-4xl font-light tracking-widest text-brand-white">
               SHOP BY COLLECTION
             </h2>
-            <div className="w-12 h-[1px] bg-brand-gold mx-auto my-4" />
-            <p className="text-xs sm:text-sm text-brand-charcoal/60 font-light">
+            <div className="w-12 h-[1px] bg-brand-gold mx-auto my-3" />
+            <p className="text-xs text-brand-white/60 font-light">
               Explore silhouettes structured specifically for elegant wardrobes.
             </p>
           </div>
 
           {/* Staggered Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 pb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8">
             {categories.map((cat, index) => {
               // Asymmetric staggered column offsets
-              const yOffset = index === 0 ? "md:translate-y-0" : index === 1 ? "md:translate-y-16" : "md:translate-y-8";
+              const yOffset = index === 0 ? "md:translate-y-0" : index === 1 ? "md:translate-y-6" : "md:translate-y-3";
               return (
                 <motion.div
                   key={cat.name}
-                  initial={{ opacity: 0, y: 55 }}
+                  initial={{ opacity: 0, y: 35 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ delay: index * 0.15, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -226,7 +225,7 @@ export default function Home() {
                     e.currentTarget.style.setProperty("--x", `${x}px`);
                     e.currentTarget.style.setProperty("--y", `${y}px`);
                   }}
-                  className={`group relative h-[500px] overflow-hidden rounded-none border border-brand-navy/5 shadow-md cursor-pointer ${yOffset}`}
+                  className={`group relative h-[420px] overflow-hidden rounded-none border border-brand-gold/15 shadow-md cursor-pointer ${yOffset}`}
                 >
                   <img
                     src={cat.img}
@@ -264,12 +263,12 @@ export default function Home() {
 
 
         {/* THE ART OF ATELIER (CORE VALUES) */}
-        <section className="py-24 bg-white border-y border-brand-navy/5 relative z-10">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <section className="py-16 bg-[#0E1724]/40 border-y border-brand-gold/10 relative z-10">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 title: "Complimentary Delivery",
-                desc: "Fully tracked priority worldwide dispatch on all orders exceeding $150.",
+                desc: "Fully tracked priority worldwide dispatch on all orders exceeding ₹12,450.",
               },
               {
                 title: "Bespoke Monograms",
@@ -293,15 +292,15 @@ export default function Home() {
                   e.currentTarget.style.setProperty("--x", `${x}px`);
                   e.currentTarget.style.setProperty("--y", `${y}px`);
                 }}
-                className="group relative border border-brand-navy/5 p-8 flex flex-col justify-between h-56 bg-brand-white/20 hover:border-brand-gold/40 transition-all duration-500 overflow-hidden cursor-default"
+                className="group relative border border-brand-gold/15 p-6 flex flex-col justify-between h-48 bg-[#131F30]/40 backdrop-blur-sm hover:border-brand-gold transition-all duration-500 overflow-hidden cursor-default"
               >
                 <div className="hover-glow-overlay" />
                 <div className="relative z-10">
-                  <div className="w-8 h-8 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-6 group-hover:bg-brand-gold group-hover:text-brand-navy transition-all duration-500">
-                    <FiCheckCircle className="w-4 h-4" />
+                  <div className="w-7 h-7 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-4 group-hover:bg-brand-gold group-hover:text-brand-navy transition-all duration-500">
+                    <FiCheckCircle className="w-3.5 h-3.5" />
                   </div>
-                  <h4 className="font-luxury text-lg text-brand-navy uppercase tracking-wider mb-2">{val.title}</h4>
-                  <p className="text-[11px] text-brand-charcoal/60 leading-relaxed font-light">{val.desc}</p>
+                  <h4 className="font-luxury text-base text-brand-white uppercase tracking-wider mb-2">{val.title}</h4>
+                  <p className="text-[10px] text-brand-white/60 leading-relaxed font-light">{val.desc}</p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-brand-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </div>
@@ -310,25 +309,25 @@ export default function Home() {
         </section>
 
         {/* BEST SELLERS (THE EXQUISITE VAULT) */}
-        <section className="py-36 px-6 max-w-7xl mx-auto z-10 relative">
-          <div className="text-center max-w-xl mx-auto mb-24 space-y-3">
+        <section className="py-20 px-6 max-w-7xl mx-auto z-10 relative">
+          <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
             <span className="text-xs uppercase text-brand-gold tracking-[0.3em] font-semibold">Exquisite Selection</span>
-            <h2 className="font-luxury text-4xl font-light tracking-widest text-brand-navy">
+            <h2 className="font-luxury text-3xl font-light tracking-widest text-brand-white">
               THE EXQUISITE VAULT
             </h2>
-            <div className="w-12 h-[1px] bg-brand-gold mx-auto my-4" />
-            <p className="text-xs sm:text-sm text-brand-charcoal/60 font-light">
+            <div className="w-12 h-[1px] bg-brand-gold mx-auto my-3" />
+            <p className="text-xs text-brand-white/60 font-light">
               Highly demanded headwear currently circulating the elite community.
             </p>
           </div>
 
           {displayProducts.length === 0 ? (
-            <div className="text-center py-20 bg-white border border-brand-navy/10 rounded-sm space-y-4">
-              <p className="font-luxury text-lg text-brand-navy uppercase tracking-widest">Atelier Catalog Empty</p>
-              <p className="text-xs text-brand-charcoal/60">No products found in the catalog. Add products in the admin panel to view them here.</p>
+            <div className="text-center py-16 bg-[#0E1724]/40 border border-brand-gold/15 rounded-sm space-y-4">
+              <p className="font-luxury text-lg text-brand-white uppercase tracking-widest">Atelier Catalog Empty</p>
+              <p className="text-xs text-brand-white/65">No products found in the catalog. Add products in the admin panel to view them here.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center justify-items-center">
               {displayProducts.map((product) => (
                 <ProductCard key={product.id || product._id} product={product} onQuickView={openQuickView} />
               ))}
@@ -337,8 +336,8 @@ export default function Home() {
         </section>
 
         {/* BRAND STORY SECTION (ARTISAN HERITAGE) */}
-        <section className="py-36 bg-[#F5F2EB] border-t border-brand-gold/10 overflow-hidden z-10 relative">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <section className="py-20 bg-[#121A26] border-y border-brand-gold/10 overflow-hidden z-10 relative">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Layered dual picture composition */}
             <motion.div
@@ -346,10 +345,10 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full pr-12 pb-12"
+              className="relative w-full pr-6 pb-6"
             >
               {/* Primary Image */}
-              <div className="aspect-[4/3] w-full overflow-hidden border border-brand-navy/5 shadow-lg group relative">
+              <div className="aspect-[4/3] w-full overflow-hidden border border-brand-gold/15 shadow-lg group relative">
                 <img
                   src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=800"
                   alt="Cap Hand-sewing Artisan"
@@ -360,7 +359,7 @@ export default function Home() {
               </div>
               
               {/* Secondary Overlapping Image representing cashmere materials */}
-              <div className="absolute bottom-0 right-0 w-36 sm:w-48 aspect-square overflow-hidden border-2 border-brand-white bg-brand-white shadow-2xl z-20">
+              <div className="absolute bottom-0 right-0 w-24 sm:w-36 aspect-square overflow-hidden border-2 border-[#121A26] bg-brand-navy shadow-2xl z-20">
                 <img
                   src="https://images.unsplash.com/photo-1576871337622-98d48d4aa53e?auto=format&fit=crop&q=80&w=400"
                   alt="Raw organic thread weaves close-up"
@@ -370,36 +369,36 @@ export default function Home() {
               </div>
             </motion.div>
             
-            <div className="space-y-7 max-w-xl">
+            <div className="space-y-6 max-w-xl">
               <span className="text-xs uppercase text-brand-gold tracking-[0.3em] font-semibold block">Our Heritage</span>
-              <h2 className="font-luxury text-4xl sm:text-5xl font-light tracking-wide text-brand-navy leading-tight">
+              <h2 className="font-luxury text-3xl sm:text-4xl font-light tracking-wide text-brand-white leading-tight">
                 HANDCRAFTED <br />
                 <span className="italic font-normal">Excellence</span>
               </h2>
-              <div className="w-12 h-[1px] bg-brand-gold/60 my-4" />
+              <div className="w-12 h-[1px] bg-brand-gold/60 my-3" />
               
-              <p className="text-xs sm:text-sm text-brand-charcoal/80 leading-relaxed font-light first-letter:text-4xl first-letter:font-luxury first-letter:float-left first-letter:mr-2.5 first-letter:text-brand-gold first-letter:font-bold">
+              <p className="text-xs sm:text-sm text-brand-white/80 leading-relaxed font-light first-letter:text-4xl first-letter:font-luxury first-letter:float-left first-letter:mr-2.5 first-letter:text-brand-gold first-letter:font-bold">
                 Since our inception, Qwality Caps has stood as a hallmark of luxury headwear. Nestled in historical design traditions, every single piece is cut, aligned, and monogrammed by hands that have curated royalty fashion portfolios.
               </p>
-              <p className="text-xs sm:text-sm text-brand-charcoal/80 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-brand-white/70 leading-relaxed font-light">
                 We believe in conscious excellence. Using certified merino wools, sustainable linings, and solid gold thread embroideries, we present style that outlives seasons.
               </p>
               
               {/* Handwritten script signature graphic */}
-              <div className="pt-6 flex items-center gap-4 select-none">
+              <div className="pt-4 flex items-center gap-4 select-none">
                 <div className="h-[1px] w-8 bg-brand-gold/40" />
                 <span className="font-signature text-brand-gold text-4xl leading-none tracking-normal">
                   Arthur Penhaligon
                 </span>
-                <span className="text-[8px] uppercase tracking-widest text-brand-charcoal/40 font-bold -ml-1">
+                <span className="text-[8px] uppercase tracking-widest text-brand-white/40 font-bold -ml-1">
                   — Head Seamstress
                 </span>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <Link
                   href="/about"
-                  className="group inline-flex items-center gap-3 text-[10px] text-brand-navy font-bold uppercase tracking-widest hover:text-brand-gold transition-colors duration-300"
+                  className="group inline-flex items-center gap-3 text-[10px] text-brand-white hover:text-brand-gold transition-colors duration-300"
                 >
                   <span>Read Our Heritage Story</span>
                   <FiArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -410,7 +409,7 @@ export default function Home() {
         </section>
 
         {/* CUSTOMER TESTIMONIALS (CONNOISSEURS CAROUSEL / CARD STAGGER GRID) */}
-        <section className="py-36 bg-brand-navy text-brand-white relative overflow-hidden border-y border-brand-gold/15 z-10">
+        <section className="py-20 bg-brand-navy text-brand-white relative overflow-hidden border-y border-brand-gold/15 z-10">
           <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-7xl luxury-grid-lines-dark pointer-events-none z-0 opacity-15" />
           
           {/* Luxury Large Quote Mark in background */}
@@ -419,9 +418,9 @@ export default function Home() {
           </div>
 
           <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center space-y-3 mb-20">
+            <div className="text-center space-y-2 mb-12">
               <span className="text-xs uppercase text-brand-gold tracking-[0.3em] font-semibold block">Elite Reviews</span>
-              <h2 className="font-luxury text-3xl md:text-4xl font-light tracking-widest uppercase">
+              <h2 className="font-luxury text-3xl font-light tracking-widest uppercase">
                 WHAT CONNOISSEURS SAY
               </h2>
               <div className="h-[1px] w-14 bg-brand-gold mx-auto" />
@@ -470,14 +469,14 @@ export default function Home() {
         </section>
 
         {/* INSTAGRAM GALLERY (SOCIAL REGISTRY) */}
-        <section className="py-36 max-w-7xl mx-auto px-6 z-10 relative">
-          <div className="text-center max-w-xl mx-auto mb-24 space-y-3">
+        <section className="py-20 max-w-7xl mx-auto px-6 z-10 relative">
+          <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
             <span className="text-xs uppercase text-brand-gold tracking-[0.3em] font-semibold">Social Registry</span>
-            <h2 className="font-luxury text-4xl font-light tracking-widest text-brand-navy">
+            <h2 className="font-luxury text-3xl font-light tracking-widest text-brand-white">
               #QWALITYCAPS STYLE
             </h2>
-            <div className="w-12 h-[1px] bg-brand-gold mx-auto my-4" />
-            <p className="text-xs sm:text-sm text-brand-charcoal/60 font-light">
+            <div className="w-12 h-[1px] bg-brand-gold mx-auto my-3" />
+            <p className="text-xs text-brand-white/60 font-light">
               Follow our aesthetic narrative on Instagram.
             </p>
           </div>

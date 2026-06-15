@@ -53,7 +53,7 @@ function SparkBar({ values = [], height = 40 }) {
           key={i}
           className="flex-1 bg-[#C8A96A]/30 hover:bg-[#C8A96A]/60 transition-all duration-300 rounded-t-sm"
           style={{ height: `${Math.max((v / max) * height, 3)}px` }}
-          title={`$${v.toFixed(0)}`}
+          title={`₹${(v * 83).toLocaleString("en-IN")}`}
         />
       ))}
     </div>
@@ -118,10 +118,10 @@ export default function AdminDashboard() {
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
             <StatCard
               label="Total Revenue"
-              value={metrics?.totalRevenue ?? 0}
+              value={(metrics?.totalRevenue ?? 0) * 83}
               icon={FiDollarSign}
               color="bg-[#C8A96A] text-[#C8A96A]"
-              prefix="$"
+              prefix="₹"
               delay={0}
             />
             <StatCard
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
                               style={{ height: `${Math.max(pct, 4)}%` }}
                             >
                               <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#0A1628] border border-[#C8A96A]/20 px-1.5 py-0.5 rounded text-[9px] text-[#C8A96A] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                                ${m.revenue.toFixed(0)}
+                                ₹{(m.revenue * 83).toLocaleString("en-IN")}
                               </div>
                             </div>
                           </div>
@@ -279,7 +279,7 @@ export default function AdminDashboard() {
                         <span className="text-xs text-white/50">{order.items?.length ?? 0} item(s)</span>
                       </td>
                       <td className="px-6 py-3.5">
-                        <span className="text-xs font-bold text-white">${order.total?.toFixed(2)}</span>
+                        <span className="text-xs font-bold text-white">₹{Math.round(order.total * 83).toLocaleString("en-IN")}</span>
                       </td>
                       <td className="px-6 py-3.5">
                         <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm border ${STATUS_COLORS[order.status] || "text-white/40 bg-white/5 border-white/10"}`}>

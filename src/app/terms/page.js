@@ -10,7 +10,7 @@ export default function TermsPage() {
       <PageLoader />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] pb-24 bg-[#F8F6F1]">
+      <main className="flex-grow pt-[88px] pb-24 bg-[#F8F6F1]">
         <div className="max-w-3xl mx-auto px-6 space-y-8 text-sm text-brand-charcoal/80 leading-relaxed font-light">
           <h1 className="font-luxury text-3xl font-extrabold tracking-widest text-brand-navy text-center uppercase mb-8">
             Terms & Conditions
