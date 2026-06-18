@@ -51,7 +51,7 @@ export const mockProducts = [
       { name: "Slate Charcoal", hex: "#3A3A3A", secondaryHex: "" }
     ],
     images: [
-      "https://images.unsplash.com/photo-1534215754734-18e55d13ce35?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=800"
     ],
     reviews: [
@@ -80,7 +80,7 @@ export const mockProducts = [
       { name: "Obsidian Black", hex: "#1A1A1A", secondaryHex: "" }
     ],
     images: [
-      "https://images.unsplash.com/photo-1576871337622-98d48d4aa53e?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=800"
     ],
     reviews: [
@@ -108,7 +108,7 @@ export const mockProducts = [
       { name: "Navy Accent", hex: "#0F2744", secondaryHex: "" }
     ],
     images: [
-      "https://images.unsplash.com/photo-1608228079906-4a34780e873c?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&q=80&w=800"
     ],
     reviews: [
@@ -164,7 +164,7 @@ export const mockProducts = [
       { name: "Emperor Gold & Black", hex: "#1A1A1A", secondaryHex: "#C8A96A" }
     ],
     images: [
-      "https://images.unsplash.com/photo-1608228079906-4a34780e873c?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=800"
     ],
     reviews: [

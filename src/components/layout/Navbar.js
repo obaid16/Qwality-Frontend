@@ -69,13 +69,13 @@ export default function Navbar() {
       name: "Monarch Suede",
       desc: "Italian calfskin unstructured straps",
       path: "/shop?category=Suede",
-      img: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?auto=format&fit=crop&q=80&w=300"
+      img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=300"
     },
     {
       name: "Imperial Cashmere",
       desc: "Pure Grade-A Himalayan knits",
       path: "/shop?category=Cashmere",
-      img: "https://images.unsplash.com/photo-1576871337622-98d48d4aa53e?auto=format&fit=crop&q=80&w=300"
+      img: "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=300"
     }
   ];
 

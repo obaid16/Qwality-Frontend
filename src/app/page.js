@@ -89,8 +89,8 @@ export default function Home() {
 
   const categories = [
     { name: "The Classic Line", desc: "Timeless silhouettes in wool & cashmere", path: "/shop?category=Classic", img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800" },
-    { name: "Monarch Suede", desc: "Ultra-soft Italian calfskin suede", path: "/shop?category=Suede", img: "https://images.unsplash.com/photo-1534215754734-18e55d13ce35?auto=format&fit=crop&q=80&w=800" },
-    { name: "Imperial Knits", desc: "Mongolian cashmere and fine merino", path: "/shop?category=Cashmere", img: "https://images.unsplash.com/photo-1576871337622-98d48d4aa53e?auto=format&fit=crop&q=80&w=800" }
+    { name: "Monarch Suede", desc: "Ultra-soft Italian calfskin suede", path: "/shop?category=Suede", img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=800" },
+    { name: "Imperial Knits", desc: "Mongolian cashmere and fine merino", path: "/shop?category=Cashmere", img: "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=800" }
   ];
 
   return (
@@ -361,7 +361,7 @@ export default function Home() {
               {/* Secondary Overlapping Image representing cashmere materials */}
               <div className="absolute bottom-0 right-0 w-24 sm:w-36 aspect-square overflow-hidden border-2 border-[#121A26] bg-brand-navy shadow-2xl z-20">
                 <img
-                  src="https://images.unsplash.com/photo-1576871337622-98d48d4aa53e?auto=format&fit=crop&q=80&w=400"
+                  src="https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=400"
                   alt="Raw organic thread weaves close-up"
                   className="w-full h-full object-cover"
                 />
@@ -483,7 +483,7 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
-              "https://images.unsplash.com/photo-1576871337622-98d48d4aa53e?auto=format&fit=crop&q=80&w=400",
+              "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=400",
               "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=400",
               "https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?auto=format&fit=crop&q=80&w=400",
               "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=400"
