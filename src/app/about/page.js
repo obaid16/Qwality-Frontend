@@ -25,8 +25,8 @@ export default function AboutPage() {
           {/* Intro Banner */}
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm border border-brand-navy/10 shadow-lg">
             <img
-              src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=1200"
-              alt="Artisan workspace"
+              src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=1200"
+              alt="Artisan cap workspace"
               className="w-full h-full object-cover animate-fade-in"
             />
           </div>

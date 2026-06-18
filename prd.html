@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qwality Caps – Product Requirements Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0D1B2A;
+      --navy-mid: #152535;
+      --gold: #C9A84C;
+      --gold-light: #F5E6C0;
+      --charcoal: #2C3E50;
+      --slate: #64748B;
+      --light: #F8F6F1;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --green: #16A34A;
+      --red: #DC2626;
+      --blue: #2563EB;
+      --purple: #7C3AED;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--charcoal);
+      line-height: 1.75;
+      font-size: 10.5pt;
+    }
+
+    /* ── COVER ── */
+    .cover {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0D1B2A 0%, #1a2f45 60%, #0D1B2A 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .cover-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .cover-ring-1 {
+      width: 500px;
+      height: 500px;
+      top: -100px;
+      right: -100px;
+    }
+
+    .cover-ring-2 {
+      width: 350px;
+      height: 350px;
+      bottom: -80px;
+      left: -80px;
+    }
+
+    .cover-ring-3 {
+      width: 200px;
+      height: 200px;
+      top: 60px;
+      left: 100px;
+      border-color: rgba(201, 168, 76, 0.07);
+    }
+
+    .cover-glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .cover-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: var(--gold);
+      font-size: 7.5pt;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      padding: 7px 20px;
+      border-radius: 30px;
+      margin-bottom: 36px;
+    }
+
+    .cover-eyebrow::before {
+      content: '◆';
+      font-size: 5pt;
+    }
+
+    .cover-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 58pt;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .cover-brand-sub {
+      font-size: 9pt;
+      letter-spacing: 0.55em;
+      color: rgba(255, 255, 255, 0.38);
+      text-transform: uppercase;
+      margin-bottom: 44px;
+    }
+
+    .cover-doc-title {
+      font-size: 28pt;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+
+    .cover-doc-sub {
+      font-size: 11pt;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 300;
+      margin-bottom: 52px;
+      line-height: 1.6;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 52px;
+    }
+
+    .cover-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .cover-stat {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 20px 16px;
+    }
+
+    .cover-stat-val {
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .cover-stat-label {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      color: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 52px 64px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--navy);
+      position: relative;
+    }
+
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .section-num {
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 8.5pt;
+      letter-spacing: 0.08em;
+      padding: 6px 11px;
+      border-radius: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .section-title {
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 30px 0 12px;
+      padding-left: 12px;
+      border-left: 3px solid var(--gold);
+    }
+
+    h4 {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 20px 0 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    ul,
+    ol {
+      padding-left: 22px;
+      margin-bottom: 14px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: 10pt;
+    }
+
+    /* ── TABLES ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 24px;
+      font-size: 9.5pt;
+    }
+
+    thead tr {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    thead th {
+      padding: 11px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 8.5pt;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #FAFAFA;
+    }
+
+    tbody td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 7.5pt;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .b-must {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .b-should {
+      background: #FEF9C3;
+      color: #92400E;
+    }
+
+    .b-could {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .b-done {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .b-prog {
+      background: #DBEAFE;
+      color: #1E40AF;
+    }
+
+    .b-plan {
+      background: #F3E8FF;
+      color: #6B21A8;
+    }
+
+    .b-gold {
+      background: var(--gold-light);
+      color: #92400E;
+    }
+
+    .b-gray {
+      background: #F1F5F9;
+      color: #475569;
+    }
+
+    .b-navy {
+      background: #E0E7FF;
+      color: #3730A3;
+    }
+
+    .b-high {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .b-med {
+      background: #FEF9C3;
+      color: #92400E;
+    }
+
+    .b-low {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    /* ── INFO BOXES ── */
+    .box {
+      border-left: 4px solid;
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin: 16px 0 20px;
+      font-size: 9.5pt;
+      line-height: 1.6;
+    }
+
+    .box.info {
+      border-color: var(--blue);
+      background: #EFF6FF;
+    }
+
+    .box.warn {
+      border-color: #F59E0B;
+      background: #FFFBEB;
+    }
+
+    .box.goal {
+      border-color: var(--green);
+      background: #F0FDF4;
+    }
+
+    .box.purple {
+      border-color: var(--purple);
+      background: #F5F3FF;
+    }
+
+    .box strong {
+      font-weight: 700;
+    }
+
+    /* ── USER STORY CARD ── */
+    .story {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 8px 0;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .story-id {
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--slate);
+      font-variant-numeric: tabular-nums;
+      padding-top: 2px;
+    }
+
+    .story-text {
+      font-size: 9.5pt;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+
+    .story-text strong {
+      color: var(--navy);
+    }
+
+    /* ── PERSONA CARD ── */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0 24px;
+    }
+
+    .persona {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .persona-header {
+      background: var(--navy);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .persona-avatar {
+      width: 44px;
+      height: 44px;
+      background: rgba(201, 168, 76, 0.2);
+      border: 2px solid rgba(201, 168, 76, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18pt;
+    }
+
+    .persona-name {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 11pt;
+    }
+
+    .persona-role {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 8.5pt;
+      margin-top: 2px;
+    }
+
+    .persona-body {
+      padding: 16px 20px;
+      background: var(--white);
+    }
+
+    .persona-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 9pt;
+    }
+
+    .persona-label {
+      font-weight: 600;
+      color: var(--navy);
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+
+    .persona-val {
+      color: var(--charcoal);
+    }
+
+    /* ── METRIC CARD ── */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 16px 0 24px;
+    }
+
+    .metric {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .metric-val {
+      font-size: 22pt;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-label {
+      font-size: 8.5pt;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── ROADMAP ── */
+    .phase {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .phase-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .phase-title {
+      font-weight: 700;
+      font-size: 10.5pt;
+    }
+
+    .phase-time {
+      font-size: 8.5pt;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .phase-body {
+      padding: 14px 20px;
+    }
+
+    .phase-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      font-size: 9.5pt;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .phase-item:last-child {
+      border-bottom: none;
+    }
+
+    .phase-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── FLOW ── */
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 16px 0 24px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 18px;
+      font-size: 9pt;
+      font-weight: 600;
+      border-radius: 4px;
+      text-align: center;
+      min-width: 90px;
+    }
+
+    .flow-step span {
+      display: block;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 7.5pt;
+      font-weight: 400;
+      margin-top: 3px;
+    }
+
+    .flow-arrow {
+      color: var(--gold);
+      font-size: 16pt;
+      margin: 0 6px;
+      opacity: 0.7;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      text-align: center;
+      margin-top: 48px;
+      padding: 32px;
+      background: var(--navy);
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 9pt;
+    }
+
+    .doc-footer-brand {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 15pt;
+      letter-spacing: 0.2em;
+      margin-bottom: 8px;
+    }
+
+    /* ── PRINT ── */
+    .no-print {
+      display: block;
+    }
+
+    @media print {
+      body {
+        font-size: 10pt;
+      }
+
+      .no-print {
+        display: none;
+      }
+
+      .cover {
+        min-height: auto;
+        padding: 80px 60px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════ COVER ══ -->
+  <div class="cover">
+    <div class="cover-ring cover-ring-1"></div>
+    <div class="cover-ring cover-ring-2"></div>
+    <div class="cover-ring cover-ring-3"></div>
+    <div class="cover-glow"></div>
+
+    <div class="cover-content">
+      <div class="cover-eyebrow">Product Requirements Document</div>
+      <div class="cover-brand">QWALITY</div>
+      <div class="cover-brand-sub">Artisan Caps · Premium Headwear</div>
+      <div class="cover-doc-title">Product Requirements Document</div>
+      <div class="cover-doc-sub">Defining the vision, user needs, features, and success metrics<br />for the Qwality
+        Caps e-commerce platform</div>
+      <div class="cover-divider"></div>
+      <div class="cover-stats">
+        <div class="cover-stat">
+          <div class="cover-stat-val">v1.0</div>
+          <div class="cover-stat-label">Version</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-val">Jun 2026</div>
+          <div class="cover-stat-label">Date</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-val">Live</div>
+          <div class="cover-stat-label">Status</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-val">2</div>
+          <div class="cover-stat-label">User Roles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ TOC ══ -->
+  <div class="page">
+    <div class="section-header">
+      <div class="section-num">TOC</div>
+      <div class="section-title">Table of Contents</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Section</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Executive Summary</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Problem Statement & Opportunity</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Goals & Success Metrics</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Target Users & Personas</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>User Stories</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Feature Requirements (MoSCoW)</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>User Flows</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Non-Functional Requirements</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Constraints & Assumptions</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Product Roadmap</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Out of Scope</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Risks & Mitigations</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 1 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title">Executive Summary</div>
+    </div>
+
+    <p><strong>Qwality Caps</strong> is a production-ready, full-stack e-commerce platform designed to sell premium
+      artisan headwear online. The platform enables a seamless end-to-end shopping experience — from product discovery
+      to payment — while giving the brand owner complete operational control through a powerful admin dashboard.</p>
+
+    <p>The platform is live at <strong>qwality-frontend.vercel.app</strong>, backed by a secure REST API at
+      <strong>qwality-backend.onrender.com</strong>, and powered by MongoDB Atlas in the cloud.</p>
+
+    <div class="box goal">
+      <strong>Product Vision:</strong> To build a premium, conversion-focused online storefront that matches the artisan
+      quality of the Qwality Caps brand — fast, beautiful, and trustworthy — enabling the business to operate entirely
+      online with zero third-party marketplace dependency.
+    </div>
+
+    <h3>1.1 Scope Summary</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Storefront</td>
+          <td>Customer-facing shop, product pages, cart, checkout, order history</td>
+        </tr>
+        <tr>
+          <td>Admin Panel</td>
+          <td>Full backend management — products, orders, users, coupons, CMS</td>
+        </tr>
+        <tr>
+          <td>Auth System</td>
+          <td>Registration, login, email verification, password reset</td>
+        </tr>
+        <tr>
+          <td>Payments</td>
+          <td>Razorpay gateway integration + Cash on Delivery</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>Cloudinary-powered image upload and delivery</td>
+        </tr>
+        <tr>
+          <td>Communication</td>
+          <td>Transactional emails (verification, password reset)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 2 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title">Problem Statement &amp; Opportunity</div>
+    </div>
+
+    <h3>2.1 The Problem</h3>
+    <p>Artisan cap brands traditionally rely on physical retail, social media DMs, or third-party marketplaces (Amazon,
+      Etsy) to sell their products. This approach creates several pain points:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Pain Point</th>
+          <th>Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>No owned online presence</td>
+          <td>Brand identity diluted on third-party platforms; high commission fees (8–15%)</td>
+        </tr>
+        <tr>
+          <td>Manual order management</td>
+          <td>Orders tracked on spreadsheets or WhatsApp — error-prone and unscalable</td>
+        </tr>
+        <tr>
+          <td>No customer data ownership</td>
+          <td>Can't re-market, build loyalty programs, or track purchase history</td>
+        </tr>
+        <tr>
+          <td>Limited product showcasing</td>
+          <td>No variant selection, no gallery, no reviews — poor buyer confidence</td>
+        </tr>
+        <tr>
+          <td>Cash-only / informal payments</td>
+          <td>No digital payment option reduces conversion, especially from younger buyers</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 The Opportunity</h3>
+    <div class="box info">
+      The D2C (Direct-to-Consumer) e-commerce market in India is growing at <strong>~40% YoY</strong>. Artisan and
+      handcrafted goods are seeing a resurgence in demand driven by social media discovery. A well-built,
+      mobile-friendly, SEO-optimized storefront gives Qwality Caps the opportunity to capture this demand directly —
+      without marketplace dependency.
+    </div>
+
+    <h3>2.3 Value Proposition</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Stakeholder</th>
+          <th>Value Delivered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Business Owner (Admin)</strong></td>
+          <td>Full control — manage products, pricing, stock, orders, promotions and content without any technical
+            knowledge</td>
+        </tr>
+        <tr>
+          <td><strong>Customer</strong></td>
+          <td>A premium, fast, secure shopping experience with multiple payment options, order tracking and account
+            management</td>
+        </tr>
+        <tr>
+          <td><strong>Business</strong></td>
+          <td>Zero commission on sales, owned customer data, brand credibility, repeat purchase enablement via accounts
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 3 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title">Goals &amp; Success Metrics</div>
+    </div>
+
+    <h3>3.1 Business Goals</h3>
+    <ul>
+      <li>Launch a fully operational D2C e-commerce storefront for Qwality Caps</li>
+      <li>Enable online sales via digital payments (Razorpay) and COD</li>
+      <li>Eliminate reliance on third-party marketplaces for primary sales</li>
+      <li>Give the admin complete operational autonomy through a self-service dashboard</li>
+      <li>Build a customer database with purchase history for future re-marketing</li>
+    </ul>
+
+    <h3>3.2 Product Goals</h3>
+    <ul>
+      <li>Deliver a sub-3-second page load on the storefront</li>
+      <li>Achieve a secure, bug-free checkout flow with less than 2% cart abandonment due to technical issues</li>
+      <li>Provide a mobile-first responsive experience across all screen sizes</li>
+      <li>Enable full admin operations without any developer involvement</li>
+    </ul>
+
+    <h3>3.3 Key Success Metrics (KPIs)</h3>
+    <div class="metric-grid">
+      <div class="metric">
+        <div class="metric-val">&lt; 3s</div>
+        <div class="metric-label">Page Load Time</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">100%</div>
+        <div class="metric-label">Mobile Responsive</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">&lt; 1%</div>
+        <div class="metric-label">Payment Failure Rate</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">99.9%</div>
+        <div class="metric-label">API Uptime Target</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">&lt; 200ms</div>
+        <div class="metric-label">API Response Time</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">0</div>
+        <div class="metric-label">External Marketplace Dependency</div>
+      </div>
+    </div>
+
+    <h3>3.4 Acceptance Criteria</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Acceptance Criterion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Registration</td>
+          <td>User can create account, receive verification email, and log in successfully</td>
+        </tr>
+        <tr>
+          <td>Product Browsing</td>
+          <td>Products load with images, variants, price, and stock status</td>
+        </tr>
+        <tr>
+          <td>Cart</td>
+          <td>Items persist across sessions; quantity can be updated or removed</td>
+        </tr>
+        <tr>
+          <td>Checkout</td>
+          <td>Order placed successfully via both Razorpay and COD; confirmation shown</td>
+        </tr>
+        <tr>
+          <td>Order Tracking</td>
+          <td>Customer can see order status and history in dashboard</td>
+        </tr>
+        <tr>
+          <td>Admin — Products</td>
+          <td>Admin can create, update, delete products with images without developer help</td>
+        </tr>
+        <tr>
+          <td>Admin — Orders</td>
+          <td>Admin can view all orders and update status; status history logged</td>
+        </tr>
+        <tr>
+          <td>Security</td>
+          <td>Unauthenticated users cannot access protected routes; admin routes blocked to customers</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 4 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title">Target Users &amp; Personas</div>
+    </div>
+
+    <p>Qwality Caps has two primary user types: <strong>Customers</strong> who shop on the platform, and
+      <strong>Admins</strong> who manage the business operations.</p>
+
+    <div class="persona-grid">
+      <div class="persona">
+        <div class="persona-header">
+          <div class="persona-avatar">🧢</div>
+          <div>
+            <div class="persona-name">Arjun Sharma</div>
+            <div class="persona-role">The Urban Shopper</div>
+          </div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-row"><span class="persona-label">Age:</span><span class="persona-val">22–35</span></div>
+          <div class="persona-row"><span class="persona-label">Location:</span><span class="persona-val">Metro cities
+              (Mumbai, Delhi, Bangalore)</span></div>
+          <div class="persona-row"><span class="persona-label">Device:</span><span class="persona-val">Primarily mobile
+              (Android/iOS)</span></div>
+          <div class="persona-row"><span class="persona-label">Goal:</span><span class="persona-val">Find and buy
+              premium quality caps that match his style</span></div>
+          <div class="persona-row"><span class="persona-label">Frustration:</span><span class="persona-val">Fake
+              products on marketplaces, unclear sizing, no return policy</span></div>
+          <div class="persona-row"><span class="persona-label">Pays via:</span><span class="persona-val">UPI, Razorpay,
+              COD</span></div>
+        </div>
+      </div>
+
+      <div class="persona">
+        <div class="persona-header">
+          <div class="persona-avatar">🧢</div>
+          <div>
+            <div class="persona-name">Priya Nair</div>
+            <div class="persona-role">The Gift Buyer</div>
+          </div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-row"><span class="persona-label">Age:</span><span class="persona-val">25–40</span></div>
+          <div class="persona-row"><span class="persona-label">Location:</span><span class="persona-val">Tier 1 & 2
+              cities</span></div>
+          <div class="persona-row"><span class="persona-label">Device:</span><span class="persona-val">Mix of mobile and
+              desktop</span></div>
+          <div class="persona-row"><span class="persona-label">Goal:</span><span class="persona-val">Buy a quality
+              artisan cap as a gift; wants easy checkout and fast delivery</span></div>
+          <div class="persona-row"><span class="persona-label">Frustration:</span><span class="persona-val">Complicated
+              checkout, hidden costs, no delivery tracking</span></div>
+          <div class="persona-row"><span class="persona-label">Pays via:</span><span class="persona-val">Credit card,
+              net banking, COD</span></div>
+        </div>
+      </div>
+
+      <div class="persona">
+        <div class="persona-header">
+          <div class="persona-avatar">🧢</div>
+          <div>
+            <div class="persona-name">Zaid Malik</div>
+            <div class="persona-role">The Collector</div>
+          </div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-row"><span class="persona-label">Age:</span><span class="persona-val">18–28</span></div>
+          <div class="persona-row"><span class="persona-label">Location:</span><span class="persona-val">Anywhere in
+              India</span></div>
+          <div class="persona-row"><span class="persona-label">Device:</span>
+            <sp an class="persona-val">Mobile-first</span>
+          </div>
+          <div class="persona-row"><span class="persona-label">Goal:</span><span class="persona-val">Browse new drops,
+              wishlist items, compare variants</span></div>
+          <div class="persona-row"><span class="persona-label">Frustration:</span><span class="persona-val">No wishlist,
+              can't track new arrivals, no review system</span></div>
+          <div class="persona-row"><span class="persona-label">Pays via:</span><span class="persona-val">Razorpay /
+              UPI</span></div>
+        </div>
+      </div>
+
+      <div class="persona">
+        <div class="persona-header">
+          <div class="persona-avatar">🧢</div>
+          <div>
+            <div class="persona-name">The Brand Owner</div>
+            <div class="persona-role">Admin / Business Operator</div>
+          </div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-row"><span class="persona-label">Role:</span><span class="persona-val">Owner / Manager of
+              Qwality Caps</span></div>
+          <div class="persona-row"><span class="persona-label">Tech level:</span><span class="persona-val">Non-technical
+              — needs UI for all operations</span></div>
+          <div class="persona-row"><span class="persona-label">Goal:</span><span class="persona-val">Add/edit products,
+              view & process orders, manage promotions</span></div>
+          <div class="persona-row"><span class="persona-label">Frustration:</span><span class="persona-val">Needing a
+              developer for every change; no visibility into sales data</span></div>
+          <div class="persona-row"><span class="persona-label">Needs:</span><span class="persona-val">Dashboard metrics,
+              bulk operations, simple UI</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 5 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title">User Stories</div>
+    </div>
+
+    <h3>5.1 Authentication</h3>
+    <div class="story"><span class="story-id">US-01</span><span class="story-text"><strong>As a visitor,</strong> I want
+        to create an account so that I can save my orders and addresses.</span><span class="badge b-done">Done</span>
+    </div>
+    <div class="story"><span class="story-id">US-02</span><span class="story-text"><strong>As a registered
+          user,</strong> I want to log in with my email and password so that I can access my account.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-03</span><span class="story-text"><strong>As a user,</strong> I want to
+        reset my password via email so that I can regain access if I forget it.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-04</span><span class="story-text"><strong>As a new user,</strong> I
+        want to verify my email address so that my account is activated.</span><span class="badge b-done">Done</span>
+    </div>
+
+    <h3>5.2 Shopping Experience</h3>
+    <div class="story"><span class="story-id">US-05</span><span class="story-text"><strong>As a shopper,</strong> I want
+        to browse all products with category filters and search so that I can quickly find what I'm looking
+        for.</span><span class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-06</span><span class="story-text"><strong>As a shopper,</strong> I want
+        to view a product's images, description, variants (size/color), price and reviews so that I can make an informed
+        buying decision.</span><span class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-07</span><span class="story-text"><strong>As a shopper,</strong> I want
+        to add products to my cart and adjust quantities so that I can purchase multiple items.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-08</span><span class="story-text"><strong>As a shopper,</strong> I want
+        to save products to a wishlist so that I can come back and buy them later.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-09</span><span class="story-text"><strong>As a shopper,</strong> I want
+        to apply a coupon code at checkout so that I can get a discount on my order.</span><span
+        class="badge b-done">Done</span></div>
+
+    <h3>5.3 Checkout & Payment</h3>
+    <div class="story"><span class="story-id">US-10</span><span class="story-text"><strong>As a buyer,</strong> I want
+        to select or add a shipping address at checkout so that my order is delivered to the right place.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-11</span><span class="story-text"><strong>As a buyer,</strong> I want
+        to pay online via Razorpay (UPI, card, net banking) so that I can complete my purchase digitally.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-12</span><span class="story-text"><strong>As a buyer,</strong> I want
+        to choose Cash on Delivery so that I can pay when my order arrives.</span><span class="badge b-done">Done</span>
+    </div>
+    <div class="story"><span class="story-id">US-13</span><span class="story-text"><strong>As a buyer,</strong> I want
+        to receive an order confirmation after placing an order so that I know it was successful.</span><span
+        class="badge b-done">Done</span></div>
+
+    <h3>5.4 Account & Orders</h3>
+    <div class="story"><span class="story-id">US-14</span><span class="story-text"><strong>As a customer,</strong> I
+        want to view my order history and track the status of each order so that I know when to expect my
+        delivery.</span><span class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-15</span><span class="story-text"><strong>As a customer,</strong> I
+        want to manage my saved addresses so that I can quickly reuse them at checkout.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-16</span><span class="story-text"><strong>As a customer,</strong> I
+        want to write a review for a product I purchased so that I can share my experience with others.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-17</span><span class="story-text"><strong>As a customer,</strong> I
+        want to update my name and phone number so that my profile stays current.</span><span
+        class="badge b-done">Done</span></div>
+
+    <h3>5.5 Admin Operations</h3>
+    <div class="story"><span class="story-id">US-18</span><span class="story-text"><strong>As an admin,</strong> I want
+        to add, edit, and delete products (with images, variants, pricing) so that the store catalog stays up to
+        date.</span><span class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-19</span><span class="story-text"><strong>As an admin,</strong> I want
+        to view all customer orders and update their status so that customers are informed of progress.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-20</span><span class="story-text"><strong>As an admin,</strong> I want
+        to see a dashboard with revenue, order counts, and top products so that I can monitor business
+        performance.</span><span class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-21</span><span class="story-text"><strong>As an admin,</strong> I want
+        to create and manage coupon codes so that I can run promotions and discounts.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-22</span><span class="story-text"><strong>As an admin,</strong> I want
+        to block or remove user accounts so that I can handle abusive or fraudulent behaviour.</span><span
+        class="badge b-done">Done</span></div>
+    <div class="story"><span class="story-id">US-23</span><span class="story-text"><strong>As an admin,</strong> I want
+        to manage homepage banners and FAQs so that I can update the site content without a developer.</span><span
+        class="badge b-done">Done</span></div>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 6 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title">Feature Requirements (MoSCoW)</div>
+    </div>
+
+    <div class="box info"><strong>MoSCoW Priority:</strong> <span class="badge b-must">Must Have</span> = non-negotiable
+      for launch &nbsp;|&nbsp; <span class="badge b-should">Should Have</span> = high value, ship soon &nbsp;|&nbsp;
+      <span class="badge b-could">Could Have</span> = nice-to-have, lower priority</div>
+
+    <h3>6.1 Authentication & User Management</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Priority</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Customer registration (name, email, password)</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>With email verification</td>
+        </tr>
+        <tr>
+          <td>Login / Logout with secure session</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>JWT httpOnly cookies</td>
+        </tr>
+        <tr>
+          <td>Password reset via email</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>Token-based with expiry</td>
+        </tr>
+        <tr>
+          <td>Role-based access (customer / admin)</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>RBAC enforced server-side</td>
+        </tr>
+        <tr>
+          <td>Profile update (name, phone)</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Address book (add, edit, delete, set default)</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td>Multiple addresses supported</td>
+        </tr>
+        <tr>
+          <td>Social login (Google OAuth)</td>
+          <td><span class="badge b-could">Could Have</span></td>
+          <td>Future phase</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>6.2 Product Catalog</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Priority</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Product listing with pagination</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Category filtering & text search</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>Full-text MongoDB index</td>
+        </tr>
+        <tr>
+          <td>Product detail page (images, description, variants)</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>Image gallery, size/color variants</td>
+        </tr>
+        <tr>
+          <td>Price sorting (low-high, high-low)</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Featured products section on homepage</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Product stock indicator (in stock / out of stock)</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Sale price / discount display</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>Original + sale price shown</td>
+        </tr>
+        <tr>
+          <td>Product reviews & star rating</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td>1 per user per product</td>
+        </tr>
+        <tr>
+          <td>Product tags for filtering</td>
+          <td><span class="badge b-could">Could Have</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>6.3 Cart & Checkout</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Priority</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Add/remove/update cart items</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>Persisted per user in DB</td>
+        </tr>
+        <tr>
+          <td>Coupon code application</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td>% and flat discount types</td>
+        </tr>
+        <tr>
+          <td>Shipping address selection at checkout</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Order summary with subtotal, discount, shipping, total</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Razorpay payment gateway</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>UPI, cards, net banking</td>
+        </tr>
+        <tr>
+          <td>Cash on Delivery option</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Order confirmation page</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Order confirmation email to customer</td>
+          <td><span class="badge b-could">Could Have</span></td>
+          <td>Future phase</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>6.4 Admin Dashboard</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Priority</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dashboard metrics (revenue, orders, top products)</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Product CRUD with image upload</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>Cloudinary integration</td>
+        </tr>
+        <tr>
+          <td>Bulk product delete / update</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Order management & status update</td>
+          <td><span class="badge b-must">Must Have</span></td>
+          <td>With status history log</td>
+        </tr>
+        <tr>
+          <td>User list, block/unblock, delete</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Coupon CRUD</td>
+          <td><span class="badge b-should">Should Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Banner & FAQ CMS</td>
+          <td><span class="badge b-could">Could Have</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Export orders to CSV</td>
+          <td><span class="badge b-could">Could Have</span></td>
+          <td>Future phase</td>
+        </tr>
+        <tr>
+          <td>Inventory alerts (low stock)</td>
+          <td><span class="badge b-could">Could Have</span></td>
+          <td>Future phase</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 7 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div class="section-title">User Flows</div>
+    </div>
+
+    <h3>7.1 Customer Purchase Flow</h3>
+    <div class="flow">
+      <div class="flow-step">Land on Site<span>Homepage</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Browse Shop<span>Filter / Search</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Product Detail<span>Select Variant</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Add to Cart<span>Review Cart</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Checkout<span>Address + Pay</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Order Placed<span>Confirmation</span></div>
+    </div>
+
+    <h3>7.2 Authentication Flow</h3>
+    <div class="flow">
+      <div class="flow-step">Visit /auth<span>Auth Page</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Register<span>Name/Email/Pass</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Verify Email<span>Click Link</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Login<span>Credentials</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Redirect<span>Home / Admin</span></div>
+    </div>
+
+    <h3>7.3 Admin Product Management Flow</h3>
+    <div class="flow">
+      <div class="flow-step">Admin Login<span>/admin</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Products Tab<span>View All</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Upload Image<span>Cloudinary</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Fill Form<span>Name/Price/SKU</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Save Product<span>Goes Live</span></div>
+    </div>
+
+    <h3>7.4 Order Fulfilment Flow (Admin)</h3>
+    <div class="flow">
+      <div class="flow-step">Order Placed<span>Status: Pending</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Admin Reviews<span>Confirm Order</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Processing<span>Packing</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Shipped<span>With Tracking</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Delivered<span>Complete</span></div>
+    </div>
+
+    <h3>7.5 Password Reset Flow</h3>
+    <div class="flow">
+      <div class="flow-step">Forgot Password<span>/auth</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Enter Email<span>Submit</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Email Sent<span>Reset Link</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Click Link<span>Token Verified</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">New Password<span>Updated</span></div>
+    </div>
+
+    <h3>7.6 Checkout Payment Flow (Razorpay)</h3>
+    <div class="flow">
+      <div class="flow-step">Review Cart<span>Apply Coupon</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Select Address<span>Checkout</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Create Order<span>Backend API</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Razorpay Modal<span>Pay Now</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Verify Payment<span>Backend</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Order Confirmed<span>✓</span></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 8 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">08</div>
+      <div class="section-title">Non-Functional Requirements</div>
+    </div>
+
+    <h3>8.1 Performance</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement</th>
+          <th>Target</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Page load time (homepage, shop)</td>
+          <td>&lt; 3 seconds on 4G mobile</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>API response time (P95)</td>
+          <td>&lt; 200ms for read endpoints</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Image delivery</td>
+          <td>Cloudinary CDN with auto format/quality</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Checkout latency</td>
+          <td>Order placement &lt; 3s end-to-end</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>8.2 Security</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement</th>
+          <th>Implementation</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Password security</td>
+          <td>bcrypt hashing (10 rounds)</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>XSS protection</td>
+          <td>httpOnly cookies + Helmet CSP</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>CSRF protection</td>
+          <td>SameSite cookie policy</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>API abuse prevention</td>
+          <td>Rate limiting: 100 req/15 min/IP</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Input sanitisation</td>
+          <td>express-validator on all POST/PUT</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>HTTPS only</td>
+          <td>Enforced via Vercel + Render + secure cookies</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Secret management</td>
+          <td>Environment variables only, never in code</td>
+          <td><span class="badge b-must">Must</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>8.3 Reliability</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>API uptime</td>
+          <td>99.9% (Render + MongoDB Atlas SLA)</td>
+        </tr>
+        <tr>
+          <td>Database resilience</td>
+          <td>MongoDB Atlas 3-node replica set with auto-failover</td>
+        </tr>
+        <tr>
+          <td>Error handling</td>
+          <td>All errors caught and returned in consistent JSON format</td>
+        </tr>
+        <tr>
+          <td>Server crash recovery</td>
+          <td>Render auto-restarts on crash; process.exit(1) on DB failure</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>8.4 Usability</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement</th>
+          <th>Standard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mobile responsiveness</td>
+          <td>All pages fully responsive on 320px–1440px viewport</td>
+        </tr>
+        <tr>
+          <td>Accessibility</td>
+          <td>Semantic HTML, proper heading hierarchy, ARIA labels on interactive elements</td>
+        </tr>
+        <tr>
+          <td>Browser support</td>
+          <td>Latest 2 versions of Chrome, Firefox, Safari, Edge</td>
+        </tr>
+        <tr>
+          <td>Form validation</td>
+          <td>Inline real-time validation with clear error messages</td>
+        </tr>
+        <tr>
+          <td>Loading states</td>
+          <td>Spinners/skeletons on all async operations</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>8.5 Scalability</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement</th>
+          <th>Approach</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Concurrent users</td>
+          <td>Stateless JWT auth allows horizontal backend scaling</td>
+        </tr>
+        <tr>
+          <td>Database growth</td>
+          <td>MongoDB Atlas scales vertically/horizontally on demand</td>
+        </tr>
+        <tr>
+          <td>Media storage</td>
+          <td>Cloudinary scales infinitely; no local disk dependency</td>
+        </tr>
+        <tr>
+          <td>Frontend scaling</td>
+          <td>Vercel Edge CDN serves globally with zero config</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 9 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">09</div>
+      <div class="section-title">Constraints &amp; Assumptions</div>
+    </div>
+
+    <h3>9.1 Technical Constraints</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Constraint</th>
+          <th>Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frontend and backend on different domains (Vercel + Render)</td>
+          <td>Requires <code>SameSite=None; Secure</code> cookies and strict CORS origin whitelist</td>
+        </tr>
+        <tr>
+          <td>Render free tier cold starts (~30–50s)</td>
+          <td>First request after inactivity may be slow; upgrade to paid tier for production</td>
+        </tr>
+        <tr>
+          <td>MongoDB Atlas free tier (512MB storage)</td>
+          <td>Sufficient for early stage; upgrade as catalog grows</td>
+        </tr>
+        <tr>
+          <td>Cloudinary free tier (25GB bandwidth/month)</td>
+          <td>Monitor usage; upgrade if media-heavy</td>
+        </tr>
+        <tr>
+          <td>Image upload max 5MB per file</td>
+          <td>Admin must compress images before upload or use Cloudinary transformations</td>
+        </tr>
+        <tr>
+          <td>Razorpay test mode in development</td>
+          <td>Use live keys for production payments</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>9.2 Business Constraints</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Constraint</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Single admin user initially</td>
+          <td>The platform supports one admin role; multi-admin with granular permissions is a future scope</td>
+        </tr>
+        <tr>
+          <td>No physical store integration</td>
+          <td>Inventory is managed manually in the admin dashboard</td>
+        </tr>
+        <tr>
+          <td>India-focused initially</td>
+          <td>Currency is INR; shipping logic is flat fee; international shipping not in scope</td>
+        </tr>
+        <tr>
+          <td>No third-party logistics (3PL) integration</td>
+          <td>Shipping is managed manually; no auto label generation</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>9.3 Assumptions</h3>
+    <ul>
+      <li>The admin will manually update order statuses upon shipping</li>
+      <li>Product images will be prepared and optimised before upload by the admin</li>
+      <li>All transactions will be in Indian Rupees (INR)</li>
+      <li>Email delivery depends on the SMTP provider configured — production requires a reliable SMTP (not Mailtrap
+        sandbox)</li>
+      <li>Razorpay live keys must be configured in Render environment for real payments</li>
+      <li>MongoDB Atlas network access is configured to allow Render's IP range</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 10 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title">Product Roadmap</div>
+    </div>
+
+    <p>The roadmap below outlines the phased delivery of features from initial launch through future growth iterations.
+    </p>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-title">🧢 Phase 1 — Launch MVP</div>
+        <div class="phase-time">Completed · June 2026</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Customer registration, login, email verification,
+          password reset
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Product listing, category filtering, search, product
+          detail pages
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Shopping cart (persistent), wishlist
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Checkout with address book, Razorpay + COD payment
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Order tracking & history in customer dashboard
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Admin dashboard: products, orders, users, coupons, CMS
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Cloudinary image upload, Helmet security, rate
+          limiting
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#16A34A"></div>Deployed: Vercel (frontend) + Render (backend) +
+          MongoDB Atlas
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-title">🧢 Phase 2 — Growth Features</div>
+        <div class="phase-time">Planned · Q3 2026</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#2563EB"></div>Order confirmation & shipping update emails to
+          customers
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#2563EB"></div>Low stock alerts for admin
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#2563EB"></div>Export orders to CSV / Excel
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#2563EB"></div>Product tags-based filtering
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#2563EB"></div>SEO meta tags and Open Graph support per product
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#2563EB"></div>Return / refund request flow
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#2563EB"></div>Customer loyalty points / rewards
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-title">🧢 Phase 3 — Scale & Expand</div>
+        <div class="phase-time">Future · Q4 2026+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#7C3AED"></div>Google / Apple social login (OAuth)
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#7C3AED"></div>Multi-admin with role permissions
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#7C3AED"></div>3PL (logistics partner) API integration for
+          auto-tracking
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#7C3AED"></div>International shipping & multi-currency support
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#7C3AED"></div>Native mobile app (React Native)
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#7C3AED"></div>AI-powered product recommendations
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot" style="background:#7C3AED"></div>WhatsApp order notifications integration
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 11 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title">Out of Scope</div>
+    </div>
+
+    <p>The following features are explicitly <strong>not included</strong> in the current version (v1.0) of Qwality
+      Caps:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Native mobile app (iOS / Android)</td>
+          <td>Web-first approach; mobile app planned for Phase 3</td>
+        </tr>
+        <tr>
+          <td>Social login (Google, Apple, Facebook)</td>
+          <td>Phase 2 scope</td>
+        </tr>
+        <tr>
+          <td>Automated logistics / shipment tracking API</td>
+          <td>Manual order status updates sufficient at current scale</td>
+        </tr>
+        <tr>
+          <td>Multi-vendor / marketplace model</td>
+          <td>Single-brand store only</td>
+        </tr>
+        <tr>
+          <td>Subscription / recurring payments</td>
+          <td>Not applicable to current product model</td>
+        </tr>
+        <tr>
+          <td>International shipping & multi-currency</td>
+          <td>India market only in v1</td>
+        </tr>
+        <tr>
+          <td>Live chat / customer support widget</td>
+          <td>Phase 2 scope</td>
+        </tr>
+        <tr>
+          <td>Product comparison feature</td>
+          <td>Future scope</td>
+        </tr>
+        <tr>
+          <td>Abandoned cart email recovery</td>
+          <td>Phase 2 scope</td>
+        </tr>
+        <tr>
+          <td>Inventory purchase orders</td>
+          <td>Out of scope for digital platform</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════ SECTION 12 ══ -->
+  <div class="page page-break">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <div class="section-title">Risks &amp; Mitigations</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Risk</th>
+          <th>Severity</th>
+          <th>Likelihood</th>
+          <th>Mitigation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Render backend cold start delays first requests</td>
+          <td><span class="badge b-high">High</span></td>
+          <td><span class="badge b-high">High</span></td>
+          <td>Upgrade to Render paid plan ($7/mo) to keep instance always-on</td>
+        </tr>
+        <tr>
+          <td>Cross-site cookie blocked by browser updates</td>
+          <td><span class="badge b-high">High</span></td>
+          <td><span class="badge b-med">Medium</span></td>
+          <td>SameSite=None + Secure already implemented; fallback to Authorization header supported</td>
+        </tr>
+        <tr>
+          <td>Razorpay test keys used in production</td>
+          <td><span class="badge b-high">High</span></td>
+          <td><span class="badge b-med">Medium</span></td>
+          <td>Replace RAZORPAY_KEY_ID and KEY_SECRET with live keys before going live</td>
+        </tr>
+        <tr>
+          <td>Email delivery failure (SMTP sandbox in prod)</td>
+          <td><span class="badge b-med">Medium</span></td>
+          <td><span class="badge b-high">High</span></td>
+          <td>Replace Mailtrap with production SMTP (SendGrid, Resend, or Gmail SMTP)</td>
+        </tr>
+        <tr>
+          <td>MongoDB Atlas storage limit hit (512MB free)</td>
+          <td><span class="badge b-med">Medium</span></td>
+          <td><span class="badge b-low">Low</span></td>
+          <td>Monitor Atlas dashboard; upgrade to M10 paid cluster when approaching limit</td>
+        </tr>
+        <tr>
+          <td>Cloudinary bandwidth exceeded (free tier)</td>
+          <td><span class="badge b-med">Medium</span></td>
+          <td><span class="badge b-low">Low</span></td>
+          <td>Monitor usage; compress images; upgrade plan if needed</td>
+        </tr>
+        <tr>
+          <td>Admin credentials compromised</td>
+          <td><span class="badge b-high">High</span></td>
+          <td><span class="badge b-low">Low</span></td>
+          <td>Strong password enforced; JWT expiry 1 day; bcrypt hashing; rate limiting on login</td>
+        </tr>
+        <tr>
+          <td>Payment fraud or duplicate orders</td>
+          <td><span class="badge b-high">High</span></td>
+          <td><span class="badge b-low">Low</span></td>
+          <td>Razorpay signature verification server-side before order confirmation</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <div class="doc-footer">
+      <div class="doc-footer-brand">QWALITY CAPS</div>
+      <div>Product Requirements Document · Version 1.0.0 · June 2026</div>
+      <div style="margin-top:8px; color:rgba(255,255,255,0.3)">Confidential — Internal Use Only</div>
+    </div>
+
+    <!-- Print button -->
+    <div class="no-print" style="text-align:center; margin-top:28px;">
+      <button onclick="window.print()" style="
+      background:#0D1B2A; color:#C9A84C;
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 12px 32px;
+      font-family: Inter, sans-serif;
+      font-size: 10pt; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      cursor: pointer; border-radius: 4px;">
+        ⬇ Save as PDF (Ctrl+P)
+      </button>
+    </div>
+  </div>
+
+</body>
+
+</html>

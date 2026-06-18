@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Qwality Caps – Technical Requirements Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1B2A;
+      --gold: #C9A84C;
+      --gold-light: #F5E6C0;
+      --charcoal: #2C3E50;
+      --slate: #64748B;
+      --light: #F8F6F1;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --green: #16A34A;
+      --red: #DC2626;
+      --blue: #2563EB;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--charcoal);
+      line-height: 1.7;
+      font-size: 10.5pt;
+    }
+
+    /* ── COVER PAGE ── */
+    .cover {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 40px;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      border-radius: 50%;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      bottom: -80px; left: -80px;
+      border-radius: 50%;
+    }
+
+    .cover-content { position: relative; z-index: 1; text-align: center; max-width: 700px; }
+
+    .cover-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 8pt;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 2px;
+      margin-bottom: 32px;
+    }
+
+    .cover-logo {
+      font-size: 52pt;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .cover-sub {
+      font-size: 11pt;
+      letter-spacing: 0.5em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .cover-title {
+      font-size: 26pt;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .cover-subtitle {
+      font-size: 12pt;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 56px;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .cover-meta-item {
+      background: rgba(255,255,255,0.03);
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .cover-meta-value {
+      font-size: 10pt;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ── PAGE LAYOUT ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 60px;
+    }
+
+    .page-break { page-break-before: always; }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .section-number {
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 9pt;
+      letter-spacing: 0.1em;
+      padding: 5px 10px;
+      border-radius: 2px;
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 28px 0 12px;
+    }
+
+    h4 {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 20px 0 8px;
+    }
+
+    p { margin-bottom: 12px; color: var(--charcoal); }
+
+    /* ── TABLES ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 9.5pt;
+    }
+
+    thead tr {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+    }
+
+    tbody tr:nth-child(even) { background: var(--light); }
+    tbody tr:hover { background: var(--gold-light); }
+
+    tbody td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 7.5pt;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-green  { background: #DCFCE7; color: var(--green); }
+    .badge-red    { background: #FEE2E2; color: var(--red); }
+    .badge-blue   { background: #DBEAFE; color: var(--blue); }
+    .badge-gold   { background: var(--gold-light); color: #92400E; }
+    .badge-navy   { background: #E0E7FF; color: #3730A3; }
+    .badge-gray   { background: #F1F5F9; color: var(--slate); }
+
+    /* ── CODE ── */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #F1F5F9;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 8.5pt;
+      color: #0F172A;
+    }
+
+    .code-block {
+      font-family: 'JetBrains Mono', monospace;
+      background: #0D1B2A;
+      color: #E2E8F0;
+      padding: 16px 20px;
+      border-radius: 6px;
+      font-size: 8pt;
+      line-height: 1.7;
+      margin: 12px 0 20px;
+      overflow-x: auto;
+      border-left: 3px solid var(--gold);
+    }
+
+    .code-block .k { color: #C9A84C; } /* keyword */
+    .code-block .s { color: #86EFAC; } /* string */
+    .code-block .c { color: #64748B; } /* comment */
+
+    /* ── INFO BOXES ── */
+    .info-box {
+      border-left: 4px solid;
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin: 16px 0;
+      font-size: 9.5pt;
+    }
+
+    .info-box.note   { border-color: var(--blue);  background: #EFF6FF; }
+    .info-box.warn   { border-color: #F59E0B; background: #FFFBEB; }
+    .info-box.tip    { border-color: var(--green); background: #F0FDF4; }
+    .info-box strong { font-weight: 700; }
+
+    /* ── ARCH DIAGRAM ── */
+    .arch {
+      background: var(--navy);
+      border-radius: 8px;
+      padding: 32px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .arch-node {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 6px;
+      padding: 16px 20px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .arch-node-title {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 9pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .arch-node-sub {
+      color: rgba(255,255,255,0.5);
+      font-size: 7.5pt;
+      line-height: 1.5;
+    }
+
+    .arch-arrow {
+      color: var(--gold);
+      font-size: 18pt;
+      margin: 0 8px;
+      opacity: 0.6;
+    }
+
+    /* ── API ENDPOINT ROW ── */
+    .endpoint {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin: 6px 0;
+      background: var(--white);
+    }
+
+    .endpoint:nth-child(even) { background: #FAFAFA; }
+
+    .method {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+      min-width: 48px;
+      text-align: center;
+      margin-top: 1px;
+    }
+
+    .method-get    { background: #DCFCE7; color: #15803D; }
+    .method-post   { background: #DBEAFE; color: #1D4ED8; }
+    .method-put    { background: #FEF9C3; color: #A16207; }
+    .method-patch  { background: #F3E8FF; color: #7E22CE; }
+    .method-delete { background: #FEE2E2; color: #B91C1C; }
+
+    .endpoint-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: var(--navy);
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .endpoint-desc {
+      font-size: 8.5pt;
+      color: var(--slate);
+      flex: 2;
+    }
+
+    .endpoint-auth {
+      font-size: 7.5pt;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { font-size: 10pt; }
+      .cover { min-height: auto; padding: 80px 60px; }
+      .no-print { display: none; }
+      a { color: inherit; text-decoration: none; }
+    }
+
+    /* ── TOC ── */
+    .toc-item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px dotted var(--border);
+    }
+
+    .toc-num {
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 28px;
+      font-size: 9pt;
+    }
+
+    .toc-name {
+      flex: 1;
+      font-size: 10pt;
+      color: var(--charcoal);
+    }
+
+    .toc-page {
+      font-size: 9pt;
+      color: var(--slate);
+    }
+
+    /* ── GRID CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 16px 0 24px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      background: var(--white);
+    }
+
+    .card-icon {
+      font-size: 20pt;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 8.5pt;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+    ul, ol { padding-left: 20px; margin-bottom: 12px; }
+    li { margin-bottom: 5px; font-size: 9.5pt; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ COVER PAGE ══ -->
+<div class="cover">
+  <div class="cover-content">
+    <div class="cover-badge">Technical Requirements Document</div>
+    <div class="cover-logo">QWALITY</div>
+    <div class="cover-sub">Artisan Caps · E-Commerce Platform</div>
+    <div class="cover-title">Technical Requirements Document</div>
+    <div class="cover-subtitle">Full-Stack Architecture · API Specification · Data Models · Deployment</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Version</div>
+        <div class="cover-meta-value">1.0.0</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Date</div>
+        <div class="cover-meta-value">June 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Status</div>
+        <div class="cover-meta-value">Production</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ TABLE OF CONTENTS ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-number">TOC</div>
+    <div class="section-title">Table of Contents</div>
+  </div>
+  <div class="toc-item"><span class="toc-num">1</span><span class="toc-name">Project Overview</span></div>
+  <div class="toc-item"><span class="toc-num">2</span><span class="toc-name">System Architecture</span></div>
+  <div class="toc-item"><span class="toc-num">3</span><span class="toc-name">Technology Stack</span></div>
+  <div class="toc-item"><span class="toc-num">4</span><span class="toc-name">Backend — API Specification</span></div>
+  <div class="toc-item"><span class="toc-num">5</span><span class="toc-name">Data Models (Database Schema)</span></div>
+  <div class="toc-item"><span class="toc-num">6</span><span class="toc-name">Authentication & Security</span></div>
+  <div class="toc-item"><span class="toc-num">7</span><span class="toc-name">Frontend Architecture</span></div>
+  <div class="toc-item"><span class="toc-num">8</span><span class="toc-name">Third-Party Integrations</span></div>
+  <div class="toc-item"><span class="toc-num">9</span><span class="toc-name">Environment Variables</span></div>
+  <div class="toc-item"><span class="toc-num">10</span><span class="toc-name">Deployment Infrastructure</span></div>
+  <div class="toc-item"><span class="toc-num">11</span><span class="toc-name">Non-Functional Requirements</span></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 1 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-title">Project Overview</div>
+  </div>
+
+  <p><strong>Qwality Caps</strong> is a full-stack, production-ready e-commerce platform built for an artisan cap brand. It supports end-to-end online retail operations including product discovery, user account management, shopping cart, checkout with payment gateway integration, order tracking, and a full admin dashboard.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🛍️</div>
+      <div class="card-title">Customer Storefront</div>
+      <div class="card-desc">Browse products, manage cart & wishlist, checkout, track orders, write reviews</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <div class="card-title">Auth System</div>
+      <div class="card-desc">JWT-based auth with httpOnly cookies, email verification, password reset</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚙️</div>
+      <div class="card-title">Admin Panel</div>
+      <div class="card-desc">Full product, order, user, coupon and CMS management with dashboard metrics</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💳</div>
+      <div class="card-title">Payments</div>
+      <div class="card-desc">Razorpay gateway integration + Cash on Delivery support</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">☁️</div>
+      <div class="card-title">Media CDN</div>
+      <div class="card-desc">Cloudinary for image upload, storage, and optimized delivery</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📧</div>
+      <div class="card-title">Transactional Email</div>
+      <div class="card-desc">Nodemailer SMTP for account verification and password reset emails</div>
+    </div>
+  </div>
+
+  <h3>1.1 Project URLs</h3>
+  <table>
+    <thead><tr><th>Service</th><th>URL</th><th>Platform</th></tr></thead>
+    <tbody>
+      <tr><td>Frontend</td><td><code>https://qwality-frontend.vercel.app</code></td><td>Vercel</td></tr>
+      <tr><td>Backend API</td><td><code>https://qwality-backend.onrender.com</code></td><td>Render</td></tr>
+      <tr><td>Database</td><td>MongoDB Atlas (AWS / Mumbai cluster)</td><td>MongoDB Atlas</td></tr>
+    </tbody>
+  </table>
+
+  <h3>1.2 Monorepo Structure</h3>
+  <div class="code-block">Qwality-Caps/
+├── backend/          # Node.js + Express REST API
+│   ├── server.js     # Entry point
+│   ├── src/
+│   │   ├── config/   # DB connection
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── models/   # Mongoose schemas
+│   │   ├── repositories/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── validators/
+│   └── package.json
+└── frontend/         # Next.js 16 App Router
+    ├── src/
+    │   ├── app/      # Pages & layouts
+    │   ├── components/
+    │   ├── context/  # React context (Auth, Cart)
+    │   └── utils/    # API client
+    └── package.json</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 2 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-title">System Architecture</div>
+  </div>
+
+  <p>Qwality Caps follows a decoupled <strong>client-server architecture</strong>. The frontend (Next.js) and backend (Express) are deployed independently and communicate via a RESTful HTTP API.</p>
+
+  <div class="arch">
+    <div class="arch-node">
+      <div class="arch-node-title">Browser</div>
+      <div class="arch-node-sub">User / Admin<br/>Chrome · Safari · Firefox</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-node">
+      <div class="arch-node-title">Next.js 16</div>
+      <div class="arch-node-sub">App Router<br/>Vercel Edge CDN</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-node">
+      <div class="arch-node-title">Express API</div>
+      <div class="arch-node-sub">REST / JSON<br/>Render (Node.js)</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-node">
+      <div class="arch-node-title">MongoDB Atlas</div>
+      <div class="arch-node-sub">Mongoose ODM<br/>Replica Set</div>
+    </div>
+  </div>
+
+  <h3>2.1 Request Lifecycle</h3>
+  <ol>
+    <li>User interacts with the Next.js frontend (Vercel)</li>
+    <li>Frontend calls <code>apiFetch()</code> utility → sends HTTP request with <code>credentials: "include"</code></li>
+    <li>Request arrives at Render → passes through Morgan logging → Rate Limiter → CORS middleware → Helmet security headers</li>
+    <li>JWT middleware verifies <code>accessToken</code> httpOnly cookie (or <code>Authorization</code> header)</li>
+    <li>Route handler → Service layer → Repository layer → MongoDB Atlas</li>
+    <li>Response returned as <code>{ success, data, message }</code> JSON envelope</li>
+  </ol>
+
+  <h3>2.2 Middleware Chain</h3>
+  <table>
+    <thead><tr><th>Order</th><th>Middleware</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><code>helmet()</code></td><td>Security headers (XSS, CSP, HSTS, etc.)</td></tr>
+      <tr><td>2</td><td><code>cors()</code></td><td>Cross-origin resource sharing with whitelist</td></tr>
+      <tr><td>3</td><td><code>express.json()</code></td><td>JSON body parsing (16kb limit)</td></tr>
+      <tr><td>4</td><td><code>cookieParser()</code></td><td>Parse httpOnly auth cookies</td></tr>
+      <tr><td>5</td><td><code>morgan()</code></td><td>HTTP request logging (dev only)</td></tr>
+      <tr><td>6</td><td><code>rateLimit()</code></td><td>100 req/15min per IP in production</td></tr>
+      <tr><td>7</td><td><code>verifyJWT</code></td><td>Per-route auth guard</td></tr>
+      <tr><td>8</td><td><code>authorizeRoles()</code></td><td>Per-route RBAC guard</td></tr>
+      <tr><td>9</td><td><code>errorHandler</code></td><td>Global error formatter</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 3 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-title">Technology Stack</div>
+  </div>
+
+  <h3>3.1 Backend</h3>
+  <table>
+    <thead><tr><th>Package</th><th>Version</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>express</code></td><td>^4.19.2</td><td>HTTP server & routing framework</td></tr>
+      <tr><td><code>mongoose</code></td><td>^8.4.1</td><td>MongoDB ODM with schema validation</td></tr>
+      <tr><td><code>jsonwebtoken</code></td><td>^9.0.2</td><td>JWT generation & verification</td></tr>
+      <tr><td><code>bcryptjs</code></td><td>^2.4.3</td><td>Password hashing (10 salt rounds)</td></tr>
+      <tr><td><code>cloudinary</code></td><td>^2.2.0</td><td>Image CDN upload & management</td></tr>
+      <tr><td><code>multer</code></td><td>^2.1.1</td><td>Multipart file upload handling</td></tr>
+      <tr><td><code>razorpay</code></td><td>^2.9.4</td><td>Payment gateway SDK</td></tr>
+      <tr><td><code>nodemailer</code></td><td>^6.9.13</td><td>SMTP transactional email</td></tr>
+      <tr><td><code>helmet</code></td><td>^7.1.0</td><td>HTTP security headers</td></tr>
+      <tr><td><code>cors</code></td><td>^2.8.5</td><td>CORS configuration</td></tr>
+      <tr><td><code>express-rate-limit</code></td><td>^7.3.1</td><td>API rate limiting</td></tr>
+      <tr><td><code>express-validator</code></td><td>^7.1.0</td><td>Request input validation</td></tr>
+      <tr><td><code>cookie-parser</code></td><td>^1.4.6</td><td>Cookie parsing middleware</td></tr>
+      <tr><td><code>morgan</code></td><td>^1.10.0</td><td>HTTP request logger</td></tr>
+      <tr><td><code>dotenv</code></td><td>^16.4.5</td><td>Environment variable management</td></tr>
+      <tr><td><code>nodemon</code></td><td>^3.1.2</td><td>Dev server auto-restart</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 Frontend</h3>
+  <table>
+    <thead><tr><th>Package</th><th>Version</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>next</code></td><td>16.2.9</td><td>React framework (App Router, SSR/SSG)</td></tr>
+      <tr><td><code>react</code></td><td>19.2.4</td><td>UI library</td></tr>
+      <tr><td><code>react-dom</code></td><td>19.2.4</td><td>DOM rendering</td></tr>
+      <tr><td><code>framer-motion</code></td><td>^12.40.0</td><td>Animations & transitions</td></tr>
+      <tr><td><code>react-hook-form</code></td><td>^7.79.0</td><td>Form state management & validation</td></tr>
+      <tr><td><code>react-icons</code></td><td>^5.6.0</td><td>SVG icon library</td></tr>
+      <tr><td><code>swiper</code></td><td>^12.2.0</td><td>Touch-friendly carousel/slider</td></tr>
+      <tr><td><code>tailwindcss</code></td><td>^4</td><td>Utility-first CSS framework</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.3 Infrastructure & Services</h3>
+  <table>
+    <thead><tr><th>Service</th><th>Role</th><th>Tier</th></tr></thead>
+    <tbody>
+      <tr><td>MongoDB Atlas</td><td>Primary database (replica set)</td><td>Cloud</td></tr>
+      <tr><td>Cloudinary</td><td>Image storage & CDN delivery</td><td>Cloud</td></tr>
+      <tr><td>Razorpay</td><td>Payment processing gateway</td><td>SaaS</td></tr>
+      <tr><td>Mailtrap SMTP</td><td>Transactional email (dev/test)</td><td>SaaS</td></tr>
+      <tr><td>Render</td><td>Backend hosting (Node.js)</td><td>PaaS</td></tr>
+      <tr><td>Vercel</td><td>Frontend hosting (Next.js)</td><td>PaaS</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 4 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-title">Backend — API Specification</div>
+  </div>
+
+  <p>All API routes are prefixed with <code>/api/v1</code>. Responses follow a consistent JSON envelope:</p>
+  <div class="code-block">{ "success": true, "statusCode": 200, "data": { ... }, "message": "..." }</div>
+
+  <div class="info-box note"><strong>Authentication:</strong> Protected routes require a valid <code>accessToken</code> sent as an httpOnly cookie or via <code>Authorization: Bearer &lt;token&gt;</code> header.</div>
+
+  <h3>4.1 Auth — <code>/api/v1/auth</code></h3>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/register</span><span class="endpoint-desc">Register a new customer account. Sends email verification.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/login</span><span class="endpoint-desc">Authenticate user; sets httpOnly accessToken + refreshToken cookies.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/logout</span><span class="endpoint-desc">Clears auth cookies and invalidates refresh token in DB.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/refresh-token</span><span class="endpoint-desc">Issue new access + refresh token pair using valid refresh token.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/verify-email</span><span class="endpoint-desc">Verify user email using token from query string.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/forgot-password</span><span class="endpoint-desc">Send password reset link to registered email address.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/reset-password</span><span class="endpoint-desc">Reset password using token + new password payload.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+
+  <h3>4.2 Users — <code>/api/v1/users</code></h3>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/profile</span><span class="endpoint-desc">Get authenticated user's profile.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-put">PUT</span><span class="endpoint-path">/profile</span><span class="endpoint-desc">Update name, phone on own profile.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/addresses</span><span class="endpoint-desc">Add a new shipping address to address book.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-put">PUT</span><span class="endpoint-path">/addresses/:id</span><span class="endpoint-desc">Update an existing address.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-delete">DELETE</span><span class="endpoint-path">/addresses/:id</span><span class="endpoint-desc">Remove address from book.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-patch">PATCH</span><span class="endpoint-path">/addresses/:id/default</span><span class="endpoint-desc">Set an address as default.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/</span><span class="endpoint-desc">List all users (paginated).</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-put">PUT</span><span class="endpoint-path">/:id/block</span><span class="endpoint-desc">Toggle user block/unblock status.</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-delete">DELETE</span><span class="endpoint-path">/:id</span><span class="endpoint-desc">Permanently delete a user account.</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+
+  <h3>4.3 Products — <code>/api/v1/products</code></h3>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/</span><span class="endpoint-desc">Get all products (filter by category, search, pagination, sort).</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/:id</span><span class="endpoint-desc">Get single product by MongoDB ObjectId.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/slug/:slug</span><span class="endpoint-desc">Get product by URL-friendly slug.</span><span class="endpoint-auth"><span class="badge badge-gray">Public</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/</span><span class="endpoint-desc">Create new product with validation.</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-put">PUT</span><span class="endpoint-path">/:id</span><span class="endpoint-desc">Update product fields.</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-delete">DELETE</span><span class="endpoint-path">/:id</span><span class="endpoint-desc">Soft-delete product (sets isDeleted: true).</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/bulk-delete</span><span class="endpoint-desc">Bulk soft-delete multiple products.</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/bulk-update</span><span class="endpoint-desc">Bulk update product fields (price, stock, etc.).</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+
+  <h3>4.4 Orders — <code>/api/v1/orders</code></h3>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="endpoint-path">/</span><span class="endpoint-desc">Place a new order with items, address and payment method.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/my-orders</span><span class="endpoint-desc">Get current user's order history.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/:id</span><span class="endpoint-desc">Get single order detail by ID.</span><span class="endpoint-auth"><span class="badge badge-blue">Auth</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/</span><span class="endpoint-desc">Get all orders with filters (admin).</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-put">PUT</span><span class="endpoint-path">/:id/status</span><span class="endpoint-desc">Update order status with status history log.</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="endpoint-path">/admin/dashboard-metrics</span><span class="endpoint-desc">Revenue, orders count, top products analytics.</span><span class="endpoint-auth"><span class="badge badge-red">Admin</span></span></div>
+
+  <h3>4.5 Other Endpoints</h3>
+  <table>
+    <thead><tr><th>Resource</th><th>Prefix</th><th>Key Operations</th></tr></thead>
+    <tbody>
+      <tr><td>Categories</td><td><code>/api/v1/categories</code></td><td>CRUD (admin), list (public)</td></tr>
+      <tr><td>Cart</td><td><code>/api/v1/carts</code></td><td>Get, add item, update qty, remove item, clear</td></tr>
+      <tr><td>Wishlist</td><td><code>/api/v1/wishlists</code></td><td>Get, add, remove product</td></tr>
+      <tr><td>Reviews</td><td><code>/api/v1/reviews</code></td><td>Get by product, create, delete (1 per user per product)</td></tr>
+      <tr><td>Coupons</td><td><code>/api/v1/coupons</code></td><td>Validate, CRUD admin</td></tr>
+      <tr><td>Payments</td><td><code>/api/v1/payments</code></td><td>Create Razorpay order</td></tr>
+      <tr><td>Upload</td><td><code>/api/v1/upload</code></td><td>Upload image to Cloudinary (admin, max 5MB)</td></tr>
+      <tr><td>CMS</td><td><code>/api/v1/cms</code></td><td>Banners & FAQ management</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 5 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div class="section-title">Data Models (Database Schema)</div>
+  </div>
+
+  <h3>5.1 User</h3>
+  <table>
+    <thead><tr><th>Field</th><th>Type</th><th>Constraints</th></tr></thead>
+    <tbody>
+      <tr><td><code>name</code></td><td>String</td><td>Required, trimmed</td></tr>
+      <tr><td><code>email</code></td><td>String</td><td>Required, unique, lowercase, indexed</td></tr>
+      <tr><td><code>password</code></td><td>String</td><td>Required, min 6 chars, bcrypt hashed</td></tr>
+      <tr><td><code>role</code></td><td>Enum</td><td><code>customer</code> | <code>admin</code>, default: customer</td></tr>
+      <tr><td><code>phone</code></td><td>String</td><td>Optional</td></tr>
+      <tr><td><code>isBlocked</code></td><td>Boolean</td><td>Default: false</td></tr>
+      <tr><td><code>isVerified</code></td><td>Boolean</td><td>Default: false</td></tr>
+      <tr><td><code>verificationToken</code></td><td>String</td><td>Email verification token</td></tr>
+      <tr><td><code>resetPasswordToken</code></td><td>String</td><td>Password reset token</td></tr>
+      <tr><td><code>resetPasswordExpire</code></td><td>Date</td><td>Token expiry</td></tr>
+      <tr><td><code>refreshToken</code></td><td>String</td><td>Stored refresh token</td></tr>
+      <tr><td><code>addresses[]</code></td><td>Array</td><td>name, street, city, state, zip, country, isDefault</td></tr>
+      <tr><td><code>createdAt / updatedAt</code></td><td>Date</td><td>Mongoose timestamps</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 Product</h3>
+  <table>
+    <thead><tr><th>Field</th><th>Type</th><th>Constraints</th></tr></thead>
+    <tbody>
+      <tr><td><code>name</code></td><td>String</td><td>Required</td></tr>
+      <tr><td><code>slug</code></td><td>String</td><td>Required, unique, lowercase, indexed</td></tr>
+      <tr><td><code>description</code></td><td>String</td><td>Required</td></tr>
+      <tr><td><code>category</code></td><td>ObjectId → Category</td><td>Required, ref</td></tr>
+      <tr><td><code>subcategory</code></td><td>String</td><td>Optional</td></tr>
+      <tr><td><code>sku</code></td><td>String</td><td>Required, unique, indexed</td></tr>
+      <tr><td><code>stock</code></td><td>Number</td><td>Required, default 0</td></tr>
+      <tr><td><code>price</code></td><td>Number</td><td>Required, min 0</td></tr>
+      <tr><td><code>salePrice</code></td><td>Number</td><td>Default 0, min 0</td></tr>
+      <tr><td><code>images[]</code></td><td>String[]</td><td>Cloudinary URLs</td></tr>
+      <tr><td><code>tags[]</code></td><td>String[]</td><td>Search/filter tags</td></tr>
+      <tr><td><code>variants[]</code></td><td>Array</td><td>name, value, priceAdjustment, stock</td></tr>
+      <tr><td><code>isFeatured</code></td><td>Boolean</td><td>Default false</td></tr>
+      <tr><td><code>rating</code></td><td>Number</td><td>0–5, calculated from reviews</td></tr>
+      <tr><td><code>reviewCount</code></td><td>Number</td><td>Default 0</td></tr>
+      <tr><td><code>isDeleted</code></td><td>Boolean</td><td>Soft delete flag, indexed</td></tr>
+    </tbody>
+  </table>
+  <div class="info-box tip"><strong>Full-text search:</strong> Compound text index on <code>name</code> + <code>description</code> fields enables <code>$text</code> search queries.</div>
+
+  <h3>5.3 Order</h3>
+  <table>
+    <thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>user</code></td><td>ObjectId → User</td><td>Required</td></tr>
+      <tr><td><code>items[]</code></td><td>Array</td><td>product (ref), name, quantity, price, color, size</td></tr>
+      <tr><td><code>shippingAddress</code></td><td>Object</td><td>name, street, city, state, zip, country</td></tr>
+      <tr><td><code>billingAddress</code></td><td>Object</td><td>Same structure as shipping</td></tr>
+      <tr><td><code>subtotal</code></td><td>Number</td><td>Pre-discount total</td></tr>
+      <tr><td><code>discount</code></td><td>Number</td><td>Coupon discount applied</td></tr>
+      <tr><td><code>shippingFee</code></td><td>Number</td><td>Shipping cost</td></tr>
+      <tr><td><code>total</code></td><td>Number</td><td>Final payable amount</td></tr>
+      <tr><td><code>paymentMethod</code></td><td>Enum</td><td><code>cod</code> | <code>razorpay</code></td></tr>
+      <tr><td><code>paymentStatus</code></td><td>Enum</td><td>pending | paid | refunded | failed</td></tr>
+      <tr><td><code>razorpayOrderId</code></td><td>String</td><td>From Razorpay API</td></tr>
+      <tr><td><code>razorpayPaymentId</code></td><td>String</td><td>Payment confirmation ID</td></tr>
+      <tr><td><code>status</code></td><td>Enum</td><td>pending → confirmed → processing → shipped → delivered / cancelled / refunded</td></tr>
+      <tr><td><code>statusHistory[]</code></td><td>Array</td><td>status, timestamp, comment (audit trail)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.4 Other Models</h3>
+  <table>
+    <thead><tr><th>Model</th><th>Key Fields</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Category</strong></td><td>name, slug, image, description, isActive</td></tr>
+      <tr><td><strong>Review</strong></td><td>user (ref), product (ref), rating (1-5), title, comment — unique per user+product</td></tr>
+      <tr><td><strong>Coupon</strong></td><td>code (uppercase, unique), discountType (percentage|flat), discountValue, expiryDate, minOrderAmount, maxDiscountAmount, usageLimit, usageCount, active</td></tr>
+      <tr><td><strong>Cart</strong></td><td>user (ref), items[] (product ref, quantity, color, size)</td></tr>
+      <tr><td><strong>Wishlist</strong></td><td>user (ref), products[] (product ref)</td></tr>
+      <tr><td><strong>Banner</strong></td><td>title, subtitle, image, link, isActive, order</td></tr>
+      <tr><td><strong>FAQ</strong></td><td>question, answer, category, order, isActive</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 6 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <div class="section-title">Authentication &amp; Security</div>
+  </div>
+
+  <h3>6.1 Auth Flow</h3>
+  <ol>
+    <li>User submits credentials → <code>POST /api/v1/auth/login</code></li>
+    <li>Server verifies password with <code>bcrypt.compare()</code></li>
+    <li>Server generates <strong>Access Token</strong> (JWT, 1 day expiry) and <strong>Refresh Token</strong> (JWT, 10 days)</li>
+    <li>Both tokens set as <code>httpOnly; Secure; SameSite=None</code> cookies (cross-site safe)</li>
+    <li>Subsequent requests automatically include cookies → <code>verifyJWT</code> middleware decodes token</li>
+    <li>On token expiry → client calls <code>POST /auth/refresh-token</code> to get new pair</li>
+    <li>On logout → cookies cleared + refresh token nulled in DB</li>
+  </ol>
+
+  <h3>6.2 Cookie Configuration</h3>
+  <div class="code-block"><span class="k">const</span> cookieOptions = {
+  httpOnly: <span class="k">true</span>,                         <span class="c">// Not accessible via JS (XSS protection)</span>
+  secure: process.env.NODE_ENV === <span class="s">"production"</span>,  <span class="c">// HTTPS only in production</span>
+  sameSite: process.env.NODE_ENV === <span class="s">"production"</span>  <span class="c">// cross-site safe for Vercel→Render</span>
+    ? <span class="s">"none"</span> : <span class="s">"strict"</span>,
+};</div>
+
+  <h3>6.3 Role-Based Access Control (RBAC)</h3>
+  <table>
+    <thead><tr><th>Role</th><th>Access Level</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-gray">Public</span></td><td>Products listing, product detail, categories, register, login</td></tr>
+      <tr><td><span class="badge badge-blue">Customer</span></td><td>Own profile, address book, cart, wishlist, place order, my orders, reviews</td></tr>
+      <tr><td><span class="badge badge-red">Admin</span></td><td>All customer access + user management, all orders, product CRUD, coupon CRUD, CMS, image upload, dashboard metrics</td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.4 Security Measures</h3>
+  <table>
+    <thead><tr><th>Measure</th><th>Implementation</th></tr></thead>
+    <tbody>
+      <tr><td>Password hashing</td><td>bcryptjs with 10 salt rounds</td></tr>
+      <tr><td>XSS protection</td><td>httpOnly cookies + Helmet CSP headers</td></tr>
+      <tr><td>CSRF protection</td><td>SameSite cookie policy</td></tr>
+      <tr><td>Rate limiting</td><td>100 req / 15 min per IP on <code>/api/*</code> in production</td></tr>
+      <tr><td>Input validation</td><td>express-validator on all write endpoints</td></tr>
+      <tr><td>CORS whitelist</td><td>Only approved origins (Vercel frontend URL)</td></tr>
+      <tr><td>Payload limits</td><td>16kb JSON body limit, 5MB file upload limit</td></tr>
+      <tr><td>Soft deletes</td><td>Products use <code>isDeleted</code> flag; data never destroyed</td></tr>
+      <tr><td>Account blocking</td><td>Admin can block users; blocked users get 403</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 7 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">07</div>
+    <div class="section-title">Frontend Architecture</div>
+  </div>
+
+  <h3>7.1 Next.js App Router Structure</h3>
+  <div class="code-block">src/app/
+├── page.js            <span class="c"># Homepage (hero, featured products, collections)</span>
+├── layout.js          <span class="c"># Root layout — AuthProvider, CartProvider, Header, Footer</span>
+├── globals.css
+├── auth/page.js       <span class="c"># Login / Register / Forgot Password tabs</span>
+├── shop/              <span class="c"># Product listing with filters</span>
+├── product/[slug]/    <span class="c"># Product detail page</span>
+├── cart/              <span class="c"># Shopping cart</span>
+├── checkout/          <span class="c"># Checkout flow with address + payment</span>
+├── dashboard/         <span class="c"># Customer account dashboard (profile, orders, addresses)</span>
+├── admin/             <span class="c"># Admin panel (products, orders, users, coupons, CMS)</span>
+├── about/
+├── contact/
+├── faq/
+├── privacy/
+└── terms/</div>
+
+  <h3>7.2 State Management</h3>
+  <table>
+    <thead><tr><th>Context</th><th>State Managed</th><th>Key Methods</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AuthContext</strong></td><td>user, loading</td><td>login, register, logout, updateProfile, addAddress, deleteAddress, refreshSession</td></tr>
+      <tr><td><strong>CartContext</strong></td><td>cart items, total</td><td>addToCart, removeFromCart, updateQuantity, clearCart, syncWithBackend</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.3 API Client</h3>
+  <p>All API calls go through <code>src/utils/api.js</code> — a centralized fetch wrapper:</p>
+  <ul>
+    <li>Reads base URL from <code>NEXT_PUBLIC_API_URL</code> env var</li>
+    <li>Automatically includes <code>credentials: "include"</code> for cookie auth</li>
+    <li>Handles <code>FormData</code> vs JSON content-type automatically</li>
+    <li>Parses unified error response format</li>
+    <li>Auto-redirects to <code>/auth</code> on 401 (outside of auth pages)</li>
+  </ul>
+
+  <h3>7.4 Key Pages & Features</h3>
+  <table>
+    <thead><tr><th>Page</th><th>Features</th></tr></thead>
+    <tbody>
+      <tr><td>Home</td><td>Hero banner (Swiper), featured products, category grid, brand story section</td></tr>
+      <tr><td>Shop</td><td>Product grid, category filter, price sort, search, pagination</td></tr>
+      <tr><td>Product Detail</td><td>Image gallery, variant selector (size/color), add to cart, reviews section</td></tr>
+      <tr><td>Cart</td><td>Item list, quantity control, coupon code input, order summary</td></tr>
+      <tr><td>Checkout</td><td>Address selection/creation, COD or Razorpay payment, order confirmation</td></tr>
+      <tr><td>Dashboard</td><td>Profile edit, address book, order history with status timeline</td></tr>
+      <tr><td>Admin</td><td>Dashboard metrics, product CRUD + bulk ops, order management, user list, coupon manager, banner/FAQ CMS</td></tr>
+      <tr><td>Auth</td><td>Tabbed login/register/forgot-password with react-hook-form validation</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.5 Post-Login Redirect Logic</h3>
+  <div class="code-block"><span class="c">// After successful login:</span>
+<span class="k">const</span> destination = res.user?.role === <span class="s">"admin"</span> ? <span class="s">"/admin"</span> : <span class="s">"/"</span>;
+router.push(destination);
+
+<span class="c">// Auth page also redirects if already logged in:</span>
+<span class="k">useEffect</span>(() => {
+  <span class="k">if</span> (!loading && user) {
+    router.push(user.role === <span class="s">"admin"</span> ? <span class="s">"/admin"</span> : <span class="s">"/"</span>);
+  }
+}, [user, loading]);</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 8 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">08</div>
+    <div class="section-title">Third-Party Integrations</div>
+  </div>
+
+  <h3>8.1 Razorpay (Payment Gateway)</h3>
+  <table>
+    <thead><tr><th>Detail</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>SDK</td><td><code>razorpay</code> npm package v2.9.4</td></tr>
+      <tr><td>Flow</td><td>Backend creates Razorpay order → frontend opens Razorpay modal → payment ID returned → backend verifies signature → order confirmed</td></tr>
+      <tr><td>Backend env vars</td><td><code>RAZORPAY_KEY_ID</code>, <code>RAZORPAY_KEY_SECRET</code></td></tr>
+      <tr><td>Frontend env var</td><td><code>NEXT_PUBLIC_RAZORPAY_KEY_ID</code> (public key only)</td></tr>
+      <tr><td>Endpoint</td><td><code>POST /api/v1/payments/create-order</code></td></tr>
+      <tr><td>Alternative</td><td>Cash on Delivery (COD) supported natively</td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.2 Cloudinary (Image CDN)</h3>
+  <table>
+    <thead><tr><th>Detail</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>SDK</td><td><code>cloudinary</code> npm v2.2.0</td></tr>
+      <tr><td>Upload flow</td><td>Admin uploads image → Multer buffers in memory → backend streams to Cloudinary → returns URL stored in product.images[]</td></tr>
+      <tr><td>File limits</td><td>Images only (MIME check), max 5MB per file</td></tr>
+      <tr><td>Env vars</td><td><code>CLOUDINARY_CLOUD_NAME</code>, <code>CLOUDINARY_API_KEY</code>, <code>CLOUDINARY_API_SECRET</code></td></tr>
+      <tr><td>Endpoint</td><td><code>POST /api/v1/upload</code> (admin only)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.3 Nodemailer (Transactional Email)</h3>
+  <table>
+    <thead><tr><th>Detail</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>SDK</td><td><code>nodemailer</code> v6.9.13</td></tr>
+      <tr><td>Usage</td><td>Email verification on registration, password reset link</td></tr>
+      <tr><td>SMTP config</td><td><code>SMTP_HOST</code>, <code>SMTP_PORT</code>, <code>SMTP_USER</code>, <code>SMTP_PASS</code>, <code>SMTP_FROM</code></td></tr>
+      <tr><td>Dev SMTP</td><td>Mailtrap sandbox (safe email testing)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.4 MongoDB Atlas</h3>
+  <table>
+    <thead><tr><th>Detail</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Driver</td><td>Mongoose v8.4.1</td></tr>
+      <tr><td>Cluster</td><td>Atlas replica set (3 shards, Mumbai region)</td></tr>
+      <tr><td>Database</td><td><code>qwality_caps</code></td></tr>
+      <tr><td>Auth</td><td>Dedicated DB user with scoped credentials</td></tr>
+      <tr><td>SSL</td><td>Enabled (<code>ssl=true</code> in connection string)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 9 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">09</div>
+    <div class="section-title">Environment Variables</div>
+  </div>
+
+  <h3>9.1 Backend (.env)</h3>
+  <table>
+    <thead><tr><th>Variable</th><th>Description</th><th>Required</th></tr></thead>
+    <tbody>
+      <tr><td><code>PORT</code></td><td>Server port (default 8000)</td><td><span class="badge badge-gray">Optional</span></td></tr>
+      <tr><td><code>NODE_ENV</code></td><td><code>development</code> | <code>production</code> — controls cookie policy, logging, rate limits</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>MONGODB_URI</code></td><td>Full MongoDB Atlas connection string</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>CORS_ORIGIN</code></td><td>Comma-separated allowed origins (e.g. <code>https://qwality-frontend.vercel.app</code>)</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>ACCESS_TOKEN_SECRET</code></td><td>JWT secret for access tokens</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>ACCESS_TOKEN_EXPIRY</code></td><td>Access token TTL (e.g. <code>1d</code>)</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>REFRESH_TOKEN_SECRET</code></td><td>JWT secret for refresh tokens</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>REFRESH_TOKEN_EXPIRY</code></td><td>Refresh token TTL (e.g. <code>10d</code>)</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>CLOUDINARY_CLOUD_NAME</code></td><td>Cloudinary account cloud name</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>CLOUDINARY_API_KEY</code></td><td>Cloudinary API key</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>CLOUDINARY_API_SECRET</code></td><td>Cloudinary API secret</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>RAZORPAY_KEY_ID</code></td><td>Razorpay key ID (test/live)</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>RAZORPAY_KEY_SECRET</code></td><td>Razorpay secret key</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>SMTP_HOST</code></td><td>SMTP server hostname</td><td><span class="badge badge-blue">Recommended</span></td></tr>
+      <tr><td><code>SMTP_PORT</code></td><td>SMTP port (587 / 465 / 2525)</td><td><span class="badge badge-blue">Recommended</span></td></tr>
+      <tr><td><code>SMTP_USER</code></td><td>SMTP username</td><td><span class="badge badge-blue">Recommended</span></td></tr>
+      <tr><td><code>SMTP_PASS</code></td><td>SMTP password</td><td><span class="badge badge-blue">Recommended</span></td></tr>
+      <tr><td><code>SMTP_FROM</code></td><td>Sender email address</td><td><span class="badge badge-blue">Recommended</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>9.2 Frontend (.env.local / Vercel)</h3>
+  <table>
+    <thead><tr><th>Variable</th><th>Description</th><th>Required</th></tr></thead>
+    <tbody>
+      <tr><td><code>NEXT_PUBLIC_API_URL</code></td><td>Full backend API base URL (e.g. <code>https://qwality-backend.onrender.com/api/v1</code>)</td><td><span class="badge badge-red">Required</span></td></tr>
+      <tr><td><code>NEXT_PUBLIC_RAZORPAY_KEY_ID</code></td><td>Razorpay public key (safe to expose — used in browser checkout)</td><td><span class="badge badge-blue">Recommended</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box warn"><strong>Important:</strong> <code>NEXT_PUBLIC_*</code> variables are baked at <strong>build time</strong> in Next.js. After updating them in Vercel, always trigger a manual redeploy.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 10 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">10</div>
+    <div class="section-title">Deployment Infrastructure</div>
+  </div>
+
+  <h3>10.1 Backend — Render</h3>
+  <table>
+    <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Platform</td><td>Render (Web Service)</td></tr>
+      <tr><td>Runtime</td><td>Node.js</td></tr>
+      <tr><td>Start command</td><td><code>node server.js</code></td></tr>
+      <tr><td>URL</td><td><code>https://qwality-backend.onrender.com</code></td></tr>
+      <tr><td>Root route</td><td><code>GET /</code> → 200 JSON (health check for Render)</td></tr>
+      <tr><td>Health check</td><td><code>GET /health</code></td></tr>
+      <tr><td>Auto-deploy</td><td>On push to connected Git branch</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.2 Frontend — Vercel</h3>
+  <table>
+    <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Platform</td><td>Vercel</td></tr>
+      <tr><td>Framework</td><td>Next.js (auto-detected)</td></tr>
+      <tr><td>Build command</td><td><code>next build</code></td></tr>
+      <tr><td>URL</td><td><code>https://qwality-frontend.vercel.app</code></td></tr>
+      <tr><td>Auto-deploy</td><td>On push to main branch</td></tr>
+      <tr><td>Edge CDN</td><td>Global Vercel Edge Network</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.3 Database — MongoDB Atlas</h3>
+  <table>
+    <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Cluster type</td><td>Replica Set (3 nodes)</td></tr>
+      <tr><td>Region</td><td>AWS ap-south-1 (Mumbai)</td></tr>
+      <tr><td>Database</td><td><code>qwality_caps</code></td></tr>
+      <tr><td>SSL</td><td>Enabled</td></tr>
+      <tr><td>IP Whitelist</td><td>0.0.0.0/0 (Render dynamic IPs) or Render static IP</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.4 Cross-Origin Configuration Summary</h3>
+  <div class="info-box note">
+    <strong>Production Cross-Site Setup:</strong><br/>
+    Frontend (<code>vercel.app</code>) and Backend (<code>onrender.com</code>) are on different domains.<br/><br/>
+    Required settings for cookies to work cross-site:
+    <ul style="margin-top:8px">
+      <li>Backend: <code>CORS_ORIGIN=https://qwality-frontend.vercel.app</code> (no trailing slash)</li>
+      <li>Backend: <code>NODE_ENV=production</code> (enables <code>sameSite: "none"</code> + <code>secure: true</code>)</li>
+      <li>Frontend: <code>NEXT_PUBLIC_API_URL=https://qwality-backend.onrender.com/api/v1</code></li>
+      <li>API client: <code>credentials: "include"</code> on all fetch calls</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ SECTION 11 ══ -->
+<div class="page page-break">
+  <div class="section-header">
+    <div class="section-number">11</div>
+    <div class="section-title">Non-Functional Requirements</div>
+  </div>
+
+  <h3>11.1 Performance</h3>
+  <table>
+    <thead><tr><th>Requirement</th><th>Implementation</th></tr></thead>
+    <tbody>
+      <tr><td>Fast product queries</td><td>MongoDB indexes on <code>slug</code>, <code>sku</code>, <code>category</code>, <code>isDeleted</code>, text search index</td></tr>
+      <tr><td>Image optimization</td><td>Cloudinary CDN with automatic format/quality optimization</td></tr>
+      <tr><td>Frontend performance</td><td>Next.js App Router with SSR/SSG, Vercel Edge CDN caching</td></tr>
+      <tr><td>Payload limits</td><td>16kb JSON body limit prevents large payload attacks</td></tr>
+    </tbody>
+  </table>
+
+  <h3>11.2 Scalability</h3>
+  <table>
+    <thead><tr><th>Requirement</th><th>Implementation</th></tr></thead>
+    <tbody>
+      <tr><td>Database scaling</td><td>MongoDB Atlas replica set with horizontal sharding support</td></tr>
+      <tr><td>Stateless backend</td><td>JWT-based auth — no server-side session storage needed</td></tr>
+      <tr><td>Rate limiting</td><td>Prevents abuse; can be adjusted per environment</td></tr>
+    </tbody>
+  </table>
+
+  <h3>11.3 Reliability</h3>
+  <table>
+    <thead><tr><th>Requirement</th><th>Implementation</th></tr></thead>
+    <tbody>
+      <tr><td>DB failure handling</td><td><code>process.exit(1)</code> on MongoDB connection failure to trigger Render restart</td></tr>
+      <tr><td>Async error handling</td><td><code>asyncHandler</code> wrapper on all controllers — no unhandled promise rejections</td></tr>
+      <tr><td>Global error handler</td><td>Centralized <code>errorHandler</code> middleware formats all errors consistently</td></tr>
+      <tr><td>Soft deletes</td><td>Products never permanently deleted — data integrity preserved</td></tr>
+      <tr><td>Order status history</td><td>Full audit trail of status changes with timestamps</td></tr>
+    </tbody>
+  </table>
+
+  <h3>11.4 Maintainability</h3>
+  <table>
+    <thead><tr><th>Practice</th><th>Implementation</th></tr></thead>
+    <tbody>
+      <tr><td>Layered architecture</td><td>Routes → Controllers → Services → Repositories → Models</td></tr>
+      <tr><td>Input validation</td><td>Dedicated validator files per resource using express-validator</td></tr>
+      <tr><td>Consistent response</td><td><code>ApiResponse</code> and <code>ApiError</code> utility classes for uniform API shape</td></tr>
+      <tr><td>Environment abstraction</td><td>All config via env vars — zero hardcoded secrets</td></tr>
+      <tr><td>Monorepo structure</td><td>Frontend and backend co-located for easy cross-referencing</td></tr>
+    </tbody>
+  </table>
+
+  <hr/>
+
+  <div style="text-align:center; margin-top: 40px; padding: 30px; background: var(--navy); border-radius: 8px; color: rgba(255,255,255,0.6); font-size: 9pt;">
+    <div style="color: var(--gold); font-weight: 700; font-size: 14pt; letter-spacing: 0.2em; margin-bottom: 8px;">QWALITY CAPS</div>
+    <div>Technical Requirements Document · Version 1.0.0 · June 2026</div>
+    <div style="margin-top: 8px; color: rgba(255,255,255,0.35);">Confidential — Internal Use Only</div>
+  </div>
+
+  <!-- Print button (hidden in print) -->
+  <div class="no-print" style="text-align:center; margin-top: 32px;">
+    <button onclick="window.print()" style="
+      background: #0D1B2A;
+      color: #C9A84C;
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 12px 32px;
+      font-family: Inter, sans-serif;
+      font-size: 10pt;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+    ">⬇ Save as PDF (Ctrl+P)</button>
+  </div>
+</div>
+
+</body>
+</html>

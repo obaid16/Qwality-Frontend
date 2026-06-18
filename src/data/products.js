@@ -22,7 +22,7 @@ export const mockProducts = [
     ],
     images: [
       "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&q=80&w=800"
     ],
     reviews: [
       { id: 1, user: "Lord Alistair", rating: 5, date: "May 12, 2026", comment: "Absolutely marvelous craftsmanship. The satin lining feels incredibly soft." },
@@ -136,8 +136,8 @@ export const mockProducts = [
       { name: "Navy Herringbone", hex: "#1D2A3A", secondaryHex: "" }
     ],
     images: [
-      "https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=800"
     ],
     reviews: [
       { id: 1, user: "Arthur P.", rating: 5, date: "March 15, 2026", comment: "The combination of herringbone tweed and leather is gorgeous." }
@@ -165,7 +165,7 @@ export const mockProducts = [
     ],
     images: [
       "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?auto=format&fit=crop&q=80&w=800"
     ],
     reviews: [
       { id: 1, user: "Charles D.", rating: 5, date: "February 24, 2026", comment: "The custom embroidery is absolutely perfect. It stands out in any crowd." }

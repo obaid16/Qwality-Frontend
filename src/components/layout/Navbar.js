@@ -75,7 +75,7 @@ export default function Navbar() {
       name: "Imperial Cashmere",
       desc: "Pure Grade-A Himalayan knits",
       path: "/shop?category=Cashmere",
-      img: "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=300"
+      img: "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&q=80&w=300"
     }
   ];
 

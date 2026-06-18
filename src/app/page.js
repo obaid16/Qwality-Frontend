@@ -89,8 +89,8 @@ export default function Home() {
 
   const categories = [
     { name: "The Classic Line", desc: "Timeless silhouettes in wool & cashmere", path: "/shop?category=Classic", img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800" },
-    { name: "Monarch Suede", desc: "Ultra-soft Italian calfskin suede", path: "/shop?category=Suede", img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=800" },
-    { name: "Imperial Knits", desc: "Mongolian cashmere and fine merino", path: "/shop?category=Cashmere", img: "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=800" }
+    { name: "Monarch Suede", desc: "Ultra-soft Italian calfskin suede", path: "/shop?category=Suede", img: "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&q=80&w=800" },
+    { name: "Imperial Knits", desc: "Mongolian cashmere and fine merino", path: "/shop?category=Cashmere", img: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?auto=format&fit=crop&q=80&w=800" }
   ];
 
   return (
@@ -112,7 +112,7 @@ export default function Home() {
             className="absolute inset-0 z-0"
           >
             <img
-              src="https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=1920"
+              src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=1920"
               alt="Luxury Headwear Banner"
               className="w-full h-full object-cover"
             />
@@ -350,8 +350,8 @@ export default function Home() {
               {/* Primary Image */}
               <div className="aspect-[4/3] w-full overflow-hidden border border-brand-gold/15 shadow-lg group relative">
                 <img
-                  src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=800"
-                  alt="Cap Hand-sewing Artisan"
+                  src="https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=800"
+                  alt="Cap Artisan Craftsmanship"
                   className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 border border-brand-gold/15 m-4 pointer-events-none" />
@@ -362,7 +362,7 @@ export default function Home() {
               <div className="absolute bottom-0 right-0 w-24 sm:w-36 aspect-square overflow-hidden border-2 border-[#121A26] bg-brand-navy shadow-2xl z-20">
                 <img
                   src="https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=400"
-                  alt="Raw organic thread weaves close-up"
+                  alt="Premium cap close-up detail"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-brand-navy/5 pointer-events-none" />
@@ -483,10 +483,10 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
+              "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=400",
+              "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=400",
               "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=400",
-              "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&q=80&w=400",
-              "https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?auto=format&fit=crop&q=80&w=400",
-              "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=400"
+              "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&q=80&w=400"
             ].map((img, idx) => (
               <div key={idx} className="relative aspect-square group overflow-hidden rounded-none border border-brand-navy/5 shadow-sm cursor-pointer">
                 <img src={img} alt="Instagram Showcase" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" />

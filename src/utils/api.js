@@ -7,11 +7,15 @@ export async function apiFetch(endpoint, options = {}) {
 
   const headers = {
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0",
     ...options.headers,
   };
 
   const config = {
     credentials: "include", // send secure httpOnly cookies to/from backend
+    cache: "no-store",      // bypass Next.js fetch caching
     ...options,
     headers,
   };
