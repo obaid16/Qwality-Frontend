@@ -2,7 +2,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/a
 
 export async function apiFetch(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
-  
+
   const isFormData = typeof window !== "undefined" && options.body instanceof FormData;
 
   const headers = {
@@ -26,7 +26,7 @@ export async function apiFetch(endpoint, options = {}) {
 
   try {
     const response = await fetch(url, config);
-    
+
     // Check if the response is JSON
     const contentType = response.headers.get("content-type");
     let data = {};
